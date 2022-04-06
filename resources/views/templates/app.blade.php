@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'It Solutions') }}</title>
+        <title>{{ config('app.name', 'Instagram clone') }}</title>
 
 
         <!-- Styles -->
@@ -13,6 +13,8 @@
 
         <!-- JS -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        @stack('custom-css')
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -48,7 +50,7 @@
                     @if (Route::has('login'))
                         <div>
                             @auth
-                                <a href="{{ url('/home') }}">Home</a>
+                                <a href="{{ url('/') }}">Home</a>
                             @else
                                 <a role="button" class="btn btn-outline-success" href="{{ route('login') }}">{{ __('Login') }}</a>
 
