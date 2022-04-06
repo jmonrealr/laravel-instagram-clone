@@ -15,18 +15,41 @@ class Like extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
         'post_id',
+        'user_id',
     ];
 
     /**
-     * Get the User that owns the Like.
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [];
+
+    /**
+     * Get the post who own the Like
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    function user()
+    public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo('App\Models\Post');
+    }
+
+    /**
+     * Get the user who own the Like
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Models\User');
     }
-
-    //TODO: relation post
 }

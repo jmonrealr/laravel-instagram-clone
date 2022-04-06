@@ -16,20 +16,42 @@ class Comment extends Model
      */
     protected $fillable = [
         'body',
-        'user_id',
         'post_id',
-        
+        'user_id',
     ];
 
     /**
-     * Get the User that owns the Comment.
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [];
+
+    /**
+     * Get the user who own the Comment
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Models\User');
     }
 
+    /**
+     * Get the post who own the Comment
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo('App\Models\Post');
+    }
 
-    //TODO: relation post
 }

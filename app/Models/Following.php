@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Following extends Model
 {
     use HasFactory;
 
@@ -15,8 +15,7 @@ class Image extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'url_image',
-        'post_id',
+        'user_id',
     ];
 
     /**
@@ -34,12 +33,12 @@ class Image extends Model
     protected $casts = [];
 
     /**
-     * Get the post who own the image
+     * Get the user who own the Following
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function post(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo('App\Models\Post');
+        return $this->belongsTo('App\Models\User');
     }
 }
