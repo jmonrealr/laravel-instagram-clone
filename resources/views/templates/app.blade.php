@@ -14,6 +14,9 @@
         <!-- JS -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
+        <!-- FONTAWESOME -->
+        <script src="https://kit.fontawesome.com/a36cdd0297.js" crossorigin="anonymous"></script>
+
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
