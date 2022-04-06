@@ -13,6 +13,8 @@
 
         <!-- JS -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        @stack('custom-css')
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
