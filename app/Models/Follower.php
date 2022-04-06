@@ -16,6 +16,7 @@ class Follower extends Model
      */
     protected $fillable = [
         'user_id',
+        'user_follower_id',
     ];
 
     /**
@@ -41,4 +42,15 @@ class Follower extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    /**
+     * Get the user who follows the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user_follower(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
 }
