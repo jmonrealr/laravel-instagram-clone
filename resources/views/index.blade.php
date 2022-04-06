@@ -1,197 +1,209 @@
 @extends('templates.app')
 
-@push('custom-css')
-    <style>
-        .post{
-            width: 100%;
-            height: auto;
-            background: #fff;
-            border: 1px solid #dfdfdf;
-            margin-top: 40px;
-        }
-
-        .info{
-            width: 100%;
-            height: 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .info .username{
-            width: auto;
-            font-weight: bold;
-            color: #000;
-            font-size: 14px;
-            margin-left: 10px;
-        }
-
-        .info .options{
-            height: 10px;
-            cursor: pointer;
-        }
-
-        .info .user{
-            display: flex;
-            align-items: center;
-        }
-
-        .info .profile-pic{
-            height: 40px;
-            width: 40px;
-            padding: 0;
-            background: none;
-        }
-
-        .info .profile-pic img{
-            border: none;
-        }
-
-        .post-image{
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-
-        .post-content{
-            width: 100%;
-            padding: 20px;
-        }
-
-        .likes{
-            font-weight: bold;
-        }
-
-        .description{
-            margin: 10px 0;
-            font-size: 14px;
-            line-height: 20px;
-        }
-
-        .description span{
-            font-weight: bold;
-            margin-right: 10px;
-        }
-
-        .post-time{
-            color: rgba(0, 0, 0, 0.5);
-            font-size: 12px;
-        }
-
-        .comment-wrapper{
-            width: 100%;
-            height: 50px;
-            border-radius: 1px solid #dfdfdf;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .comment-wrapper .icon{
-            height: 30px;
-        }
-
-        .comment-box{
-            width: 80%;
-            height: 100%;
-            border: none;
-            outline: none;
-            font-size: 14px;
-        }
-
-        .comment-btn,
-        .action-btn{
-            width: 70px;
-            height: 100%;
-            background: none;
-            border: none;
-            outline: none;
-            text-transform: capitalize;
-            font-size: 16px;
-            color: rgb(0, 162, 255);
-            opacity: 0.5;
-        }
-
-        .reaction-wrapper{
-            width: 100%;
-            height: 50px;
-            display: flex;
-            margin-top: -20px;
-            align-items: center;
-        }
-
-        .reaction-wrapper .icon{
-            height: 25px;
-            margin: 0;
-            margin-right: 20px;
-        }
-
-        .reaction-wrapper .icon.save{
-            margin-left: auto;
-        }
-    </style>
-@endpush
-
 @section('content')
-    <h1>Index page</h1>
-    <div class="wrapper">
-        <div class="left-col">
-            // status wrappers
 
-            <div class="post">
-                <div class="info">
-                    <div class="user">
-                        <div class="profile-pic"><img src="img/cover 1.png" alt=""></div>
-                        <p class="username">modern_web_channel</p>
+<div class="mt-4">
+    <div class="container d-flex justify-content-center">
+        <div class="col-9">
+            <div class="row">
+            <div class="col-8">
+
+                <!-- START OF STORIES -->
+                <div class="card">
+                    <div class="card-body d-flex justify-content-start">
+                        <ul class="list-unstyled mb-0">
+                            <li class="list-inline-item">
+                                <button class="btn p-0 m-0">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div
+                                            class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
+                                            <img src="{{asset('images/profiles/profile-1.jpg')}}" alt="..."
+                                                style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                        </div>
+                                        <small>samkolder</small>
+                                    </div>
+                                </button>
+                            </li>
+                            <li class="list-inline-item">
+                                <button class="btn p-0 m-0">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div
+                                            class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger story-profile-photo">
+                                            <img src="{{asset('images/profiles/profile-2.jpg')}}" alt="..."
+                                                style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                        </div>
+                                        <small>petermckinnon</small>
+                                    </div>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
-                    <img src="img/option.PNG" class="options" alt="">
                 </div>
-                <img src="img/cover 1.png" class="post-image" alt="">
-                <div class="post-content">
-                    <div class="reaction-wrapper">
-                        <img src="img/like.PNG" class="icon" alt="">
-                        <img src="img/comment.PNG" class="icon" alt="">
-                        <img src="img/send.PNG" class="icon" alt="">
-                        <img src="img/save.PNG" class="save icon" alt="">
+                <!-- END OF STORIES -->
+
+                <!-- START OF POSTS -->
+                <div class="d-flex flex-column mt-4 mb-4">
+
+                    <div class="card">
+                        <div class="card-header p-3">
+                            <div class="d-flex flex-row align-items-center">
+                                <div
+                                    class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
+                                    <img src="{{asset('images/profiles/profile-1.jpg')}}" alt="..."
+                                        style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                </div>
+                                <span class="font-weight-bold">samkolder</span>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="embed-responsive embed-responsive-1by1">
+                                <img class="embed-responsive-item" src="{{asset('images/posts/post-1.jpg')}}" />
+                            </div>
+
+                            <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1">
+                                <ul class="list-inline d-flex flex-row align-items-center m-0">
+                                    <li class="list-inline-item">
+                                        <button class="btn p-0">
+                                            <svg width="1.6em" height="1.6em" viewBox="0 0 16 16"
+                                                class="bi bi-heart" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                            </svg>
+                                        </button>
+                                    </li>
+                                    <li class="list-inline-item ml-2">
+                                        <button class="btn p-0">
+                                            <svg width="1.6em" height="1.6em" viewBox="0 0 16 16"
+                                                class="bi bi-chat" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" />
+                                            </svg>
+                                        </button>
+                                    </li>
+                                    <li class="list-inline-item ml-2">
+                                        <button class="btn p-0">
+                                            <svg width="1.6em" height="1.6em" viewBox="0 0 16 16"
+                                                class="bi bi-share" fill="currentColor"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd"
+                                                    d="M11.724 3.947l-7 3.5-.448-.894 7-3.5.448.894zm-.448 9l-7-3.5.448-.894 7 3.5-.448.894z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M13.5 4a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-11-6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                                            </svg>
+                                        </button>
+                                    </li>
+                                </ul>
+                                <div>
+                                    <button class="btn p-0">
+                                        <svg width="1.6em" height="1.6em" viewBox="0 0 16 16" class="bi bi-hdd"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M14 9H2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1zM2 8a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1a2 2 0 0 0-2-2H2z" />
+                                            <path
+                                                d="M5 10.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm-2 0a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                                            <path fill-rule="evenodd"
+                                                d="M4.094 4a.5.5 0 0 0-.44.26l-2.47 4.532A1.5 1.5 0 0 0 1 9.51v.99H0v-.99c0-.418.105-.83.305-1.197l2.472-4.531A1.5 1.5 0 0 1 4.094 3h7.812a1.5 1.5 0 0 1 1.317.782l2.472 4.53c.2.368.305.78.305 1.198v.99h-1v-.99a1.5 1.5 0 0 0-.183-.718L12.345 4.26a.5.5 0 0 0-.439-.26H4.094z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="pl-3 pr-3 pb-2">
+                                <strong class="d-block">365.354 likes</strong>
+                                <strong class="d-block">samkolder</strong>
+                                <p class="d-block mb-1">Lil drone shot I got a while back but never posted.</p>
+                                <button class="btn p-0">
+                                    <span class="text-muted">View all 2,247 comments</span>
+                                </button>
+
+                                <div>
+                                    <div>
+                                        <strong class="d-block">a.7.m3ff</strong>
+                                        <span>❤️💓💓💓💓💓</span>
+                                    </div>
+                                    <div>
+                                        <strong class="d-block">adri_rez77</strong>
+                                        <span>Hi</span>
+                                    </div>
+                                </div>
+
+                                <small class="text-muted">4 HOURS AGO</small>
+                            </div>
+
+                            <div class="position-relative comment-box">
+                                <form>
+                                    <input class="w-100 border-0 p-3 input-post" placeholder="Add a comment...">
+                                    <button class="btn btn-primary position-absolute btn-ig">Post</button>
+                                </form>
+                            </div>
+
+
+                        </div>
                     </div>
-                    <p class="likes">1,012 likes</p>
-                    <p class="description"><span>username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-                    <p class="post-time">2 minutes ago</p>
+
                 </div>
-                <div class="comment-wrapper">
-                    <img src="img/smile.PNG" class="icon" alt="">
-                    <input type="text" class="comment-box" placeholder="Add a comment">
-                    <button class="comment-btn">post</button>
+                <!-- END OF POSTS -->
+            </div>
+            <div class="col-4">
+                <div class="d-flex flex-row align-items-center">
+                    <div
+                        class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sidenav-profile-photo">
+                        <img src="{{asset('images/profiles/profile-6.jpg')}}" alt="..."
+                            style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                    </div>
+                    <div class="profile-info ml-3">
+                        <span class="profile-info-username">codingvenue</span>
+                        <span class="profile-info-name">Coding Venue</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="d-flex flex-row justify-content-between">
+                        <small class="text-muted font-weight-normal">Suggestions For You</small>
+                        <small>See All</small>
+                    </div>
+                    <div>
+                        <div class="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
+                            <div class="d-flex flex-row align-items-center">
+                                <div
+                                    class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
+                                    <img src="{{asset('images/profiles/profile-3.jpg')}}" alt="..."
+                                        style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                </div>
+                                <strong class="ml-3 sugest-username">instagram</strong>
+                            </div>
+                            <button class="btn btn-primary btn-sm p-0 btn-ig ">Follow</button>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
+                            <div class="d-flex flex-row align-items-center">
+                                <div
+                                    class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
+                                    <img src="{{asset('images/profiles/profile-4.png')}}" alt="..."
+                                        style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                </div>
+                                <strong class="ml-3 sugest-username">dccomics</strong>
+                            </div>
+                            <button class="btn btn-primary btn-sm p-0 btn-ig ">Follow</button>
+                        </div>
+                        <div class="d-flex flex-row justify-content-between align-items-center mt-3 mb-3">
+                            <div class="d-flex flex-row align-items-center">
+                                <div
+                                    class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border sugest-profile-photo">
+                                    <img src="{{asset('images/profiles/profile-5.jpg')}}" alt="..."
+                                        style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                </div>
+                                <strong class="ml-3 sugest-username">thecw</strong>
+                            </div>
+                            <button class="btn btn-primary btn-sm p-0 btn-ig">Follow</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="post">
-                <div class="info">
-                    <div class="user">
-                        <div class="profile-pic"><img src="img/cover 2.png" alt=""></div>
-                        <p class="username">modern_web_channel</p>
-                    </div>
-                    <img src="img/option.PNG" class="options" alt="">
-                </div>
-                <img src="img/cover 2.png" class="post-image" alt="">
-                <div class="post-content">
-                    <div class="reaction-wrapper">
-                        <img src="img/like.PNG" class="icon" alt="">
-                        <img src="img/comment.PNG" class="icon" alt="">
-                        <img src="img/send.PNG" class="icon" alt="">
-                        <img src="img/save.PNG" class="save icon" alt="">
-                    </div>
-                    <p class="likes">1,012 likes</p>
-                    <p class="description"><span>username </span> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus molestias?</p>
-                    <p class="post-time">2 minutes ago</p>
-                </div>
-                <div class="comment-wrapper">
-                    <img src="img/smile.PNG" class="icon" alt="">
-                    <input type="text" class="comment-box" placeholder="Add a comment">
-                    <button class="comment-btn">post</button>
-                </div>
-            </div>
-            // +5 more post elements
         </div>
     </div>
+</div>
+</div>
+</div>
 @endsection
