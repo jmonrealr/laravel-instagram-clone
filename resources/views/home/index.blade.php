@@ -118,8 +118,8 @@
                         style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                 </div>
                 <div class="profile-info ml-3">
-                    <span class="profile-info-username">codingvenue</span>
-                    <span class="profile-info-name">Coding Venue</span>
+                    <span class="profile-info-username margin-element10">codingvenue</span>
+                    <span class="profile-info-name margin-element10">Coding Venue</span>
                 </div>
             </div>
 
