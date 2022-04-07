@@ -15,5 +15,4 @@ class HomeController extends Controller
         return view('index',get_defined_vars());
     }
 
-
 }
