@@ -73,4 +73,7 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    //TODO: function to get the time that has been posted
+    //Example: Hace 4 horas
 }

@@ -123,6 +123,9 @@
                     </div>
 
                     <div class="card-body p-0">
+                        @if ($post->images->count() == 1)
+                        <img class="img-fluid" src="{{$image->url_image}}" />
+                        @else
                         <div id="carouselPostIndicators{{$j}}" class="carousel slide" data-bs-ride="carousel">
                             @php
                                 $i = 1;
@@ -165,6 +168,8 @@
                                 <span class="visually-hidden">Next</span>
                               </button>
                         </div>
+                        @endif
+                        
 
                         <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10">
                             <ul class="list-inline d-flex flex-row align-items-center m-0">
@@ -193,15 +198,14 @@
                             <button class="btn p-0">
                                 <span class="text-muted">View all {{$post->comments->count()}} comments</span>
                             </button>
-
                             <div>
                                 <div>
                                     <strong class="d-block">{{$users->keyBy($post->comments->first()->user_id)->first()->name}}</strong>
                                     <span>{{$post->comments->first()->body}}</span>
                                 </div>
                                 <div>
-                                    <strong class="d-block">adri_rez77</strong>
-                                    <span>Hi</span>
+                                    <strong class="d-block">{{$users->keyBy($post->comments[1]->user_id)->first()->name}}</strong>
+                                    <span>{{$post->comments[1]->body}}</span>
                                 </div>
                             </div>
 
