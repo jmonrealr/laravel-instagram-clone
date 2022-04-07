@@ -124,7 +124,7 @@
 
                     <div class="card-body p-0">
                         @if ($post->images->count() == 1)
-                        <img class="img-fluid" src="{{$image->url_image}}" />
+                        <img class="img-fluid" src="{{$post->images->first()->url_image}}" />
                         @else
                         <div id="carouselPostIndicators{{$j}}" class="carousel slide" data-bs-ride="carousel">
                             @php

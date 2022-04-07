@@ -8,7 +8,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form id="form-modal" name="form-modal" enctype="multipart/form-data">
+          <form method="post" id="form-modal" name="form-modal" enctype="multipart/form-data">
             <input id="title" name="title" class="w-100 border-0 p-3 input-post" placeholder="Add a title...">
             <input id="body" name="body" class="w-100 border-0 p-3 input-post" placeholder="Add a body of the post...">
             <div class="mb-3">
@@ -54,7 +54,7 @@
             //img = $("input[type=file]").get(0).files[0];
             //formData.append('img',$('#image')[0].files[0]);
             var formData = new FormData(document.querySelector('#form-modal'));
-            console.log(formData);
+            console.log(formData.getAll(0));
             $.ajax({
                 url:'create',
                 data://{
@@ -65,10 +65,12 @@
                 //}
                 ,
                 type:'post',
+                cache:false,
                 contentType: false,
                 processData: false,
                 success: function(data){
-                    console.log(data);
+                    //console.log(data);
+                    $('#ModalCreatePost').modal('toggle');
                 },
                 statusCode: {
                     404: function(e){

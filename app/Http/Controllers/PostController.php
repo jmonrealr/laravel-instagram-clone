@@ -16,15 +16,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request['image'])
+        //return ($request);
+        if (!$request->image)
             return response()->json(["No se encuentra la imagen a subir ",$request], 404); 
 
-        return ($request);
+        //return ($request);
 
         $post = Post::updateOrCreate(
             ['id' => $request->post_id],
-            ['title' => $request->input['title'], 
-            'body' => $request->input['body'],
+            ['title' => $request['title'], 
+            'body' => $request['body'],
             'user_id' => $request->user_id]
         );
 
@@ -39,7 +40,7 @@ class PostController extends Controller
             'post_id' => $post->id,
         ]);
 
-        return Response::json($post);
+        return $post;
     }
 
     /**
