@@ -106,6 +106,9 @@
                         </div>
                     </div>
                 </div>
+                @php
+                    $j = 1;
+                @endphp
                 @foreach ($posts as $post)
                 <div class="card">
                     <div class="card-header p-3">
@@ -120,11 +123,47 @@
                     </div>
 
                     <div class="card-body p-0">
-                        <div class="">
-                            @foreach ($post->images as $image)
-                            <img class="img-fluid" src="{{$image->url_image}}" />
-                            @endforeach
-                            
+                        <div id="carouselPostIndicators{{$j}}" class="carousel slide" data-bs-ride="carousel">
+                            @php
+                                $i = 1;
+                            @endphp
+                            <div class="carousel-indicators">
+                                @foreach ($post->images as $image)
+                                <button type="button" data-bs-target="#carouselPostIndicators{{$j}}" data-bs-slide-to="{{$i-1}}" class="active" 
+                                @if($i==1)
+                                aria-current="true"
+                                @endif     
+                                aria-label="Slide {{$i}}"></button>
+                                @php
+                                    $i++;
+                                @endphp
+                                @endforeach
+                            </div>
+                            @php
+                                $i = 1;
+                            @endphp
+                            <div class="carousel-inner">
+                                @foreach ($post->images as $image)
+                                <div class="carousel-item 
+                                @if($i == 1)
+                                active
+                                @endif
+                                ">
+                                    <img class="img-fluid" src="{{$image->url_image}}" />
+                                </div>
+                                @php
+                                    $i++;
+                                @endphp
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselPostIndicators{{$j}}" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselPostIndicators{{$j}}" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
                         </div>
 
                         <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10">
@@ -177,6 +216,9 @@
                         </div>
                     </div>
                 </div>
+                @php
+                    $j++;
+                @endphp
                 @endforeach
                 
                 <!-- END OF POSTS -->
