@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
 
     public function index(){
-        $posts = Post::with(['likes','comments','images','user'])->get();
+        $posts = Post::with(['likes','comments','images','user'])->orderByDesc('created_at')->get();
         $users = User::all();
         return view('index',get_defined_vars());
     }

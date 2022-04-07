@@ -169,7 +169,6 @@
                               </button>
                         </div>
                         @endif
-                        
 
                         <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10">
                             <ul class="list-inline d-flex flex-row align-items-center m-0">
