@@ -7,18 +7,29 @@
 
         <title>{{ config('app.name', 'Instagram clone') }}</title>
 
-
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
         <!-- JS -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
+        <!-- JQuery-Ajax-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <script>
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+                }
+            }); 
+        </script>
+
         <!-- FONTAWESOME -->
         <script src="https://kit.fontawesome.com/a36cdd0297.js" crossorigin="anonymous"></script>
 
     </head>
     <body>
+        @auth
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container justify-content-center">
                 <div class="d-flex flex-row justify-content-between align-items-center col-9">
@@ -61,12 +72,10 @@
                 </div>
             </div>
         </nav>
-
-        <!-- Create Post Modal -->
-        @include('home.create')
-
+        @endauth
         <main class="container">
             @yield('content')
         </main>
+        @yield('footer-scripts')
     </body>
 </html>

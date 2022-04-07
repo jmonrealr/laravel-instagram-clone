@@ -3,7 +3,12 @@
 @section('content')
 <div class="mt-4">
     <div class="container d-flex justify-content-center">
-        @include('home.index')
+        @auth
+            @include('home.index')    
+        @else
+            <script>window.location = "{{route('login')}}";</script> 
+        @endauth
+        
     </div>
 </div>
 @endsection

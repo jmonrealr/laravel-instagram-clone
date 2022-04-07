@@ -9,17 +9,63 @@
         </div>
         <div class="modal-body">
           <form>
+            <input id="title" class="w-100 border-0 p-3 input-post" placeholder="Add a title...">
+            <input id="body" class="w-100 border-0 p-3 input-post" placeholder="Add a body of the post...">
             <div class="mb-3">
-                <label for="formFile" class="form-label">Default file input example</label>
-                <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" id="image" accept="image/*" onchange="previewFile(this);">
+                <img id="imgshow" style="visibility: hidden" class="img-fluid" src="#" alt="your image" />
             </div>
+            <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Post</button>
+          <button type="button" class="btn btn-primary" id="post-create">Post</button>
         </div>
       </div>
     </div>
   </div>
   
+@section('footer-scripts')
+    <script>
+        function previewFile(input) {
+            let file = $("input[type=file]").get(0).files[0];
+            if(file){
+                var reader = new FileReader();
+                reader.onload = function(){
+                    $("#imgshow").attr("src", reader.result);
+                    $("#imgshow").attr("style", 'visible');
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+    <script>
+        $('#post-create').click(function(){
+            const title = $('#title').val();
+            const body = $('#body').val();
+            const img = $('#image').val();
+            const user_id = $('#user_id').val();
+            $.ajax({
+                url:'/create',
+                data:{
+                    title,
+                    body,
+                    img,
+                    user_id
+                },
+                type:'post',
+                success: 201,
+                statusCode: {
+                    404: function(){
+                        console.log('No se pudo encontrar');
+                    }
+                },
+                error:function(x,xs,xt){
+                    window.open(JSON.stringify(x));
+                    //alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
+    </script>
+@endsection

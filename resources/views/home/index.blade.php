@@ -285,5 +285,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Create Post Modal -->
+        @include('home.create')
     </div>
 </div>

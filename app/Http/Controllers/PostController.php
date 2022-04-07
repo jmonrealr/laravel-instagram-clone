@@ -17,7 +17,8 @@ class PostController extends Controller
         $post = Post::updateOrCreate(
             ['id' => $request->post_id],
             ['title' => $request->title, 
-            'body' => $request->body]
+            'body' => $request->body,
+            'user_id' => $request->user_id]
         );
         return Response::json($post);
     }
@@ -30,7 +31,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post  = findOrFail($id)->first();
+        $post = findOrFail($id)->first();
         return Response::json($post);
     }
 
