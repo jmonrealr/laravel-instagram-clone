@@ -16,14 +16,6 @@
         <!-- JQuery-Ajax-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-        <script>
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
-                }
-            }); 
-        </script>
-
         <!-- FONTAWESOME -->
         <script src="https://kit.fontawesome.com/a36cdd0297.js" crossorigin="anonymous"></script>
 

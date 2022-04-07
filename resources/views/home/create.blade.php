@@ -41,13 +41,18 @@
         }
     </script>
     <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+            }
+        }); 
         $('#post-create').click(function(){
             const title = $('#title').val();
             const body = $('#body').val();
             const img = $('#image').val();
             const user_id = $('#user_id').val();
             $.ajax({
-                url:'/create',
+                url:'create',
                 data:{
                     title,
                     body,
@@ -62,8 +67,8 @@
                     }
                 },
                 error:function(x,xs,xt){
-                    window.open(JSON.stringify(x));
-                    //alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                    //window.open(JSON.stringify(x));
+                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
                 }
             });
         });

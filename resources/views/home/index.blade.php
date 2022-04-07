@@ -195,6 +195,7 @@
                             <strong class="d-block" >{{$post->likes->count()}} likes</strong>
                             <strong class="d-block">{{$post->user->name}}</strong>
                             <p class="d-block mb-1">{{$post->body}}</p>
+                            @if($post->comments->count()>0)
                             <button class="btn p-0">
                                 <span class="text-muted">View all {{$post->comments->count()}} comments</span>
                             </button>
@@ -207,8 +208,8 @@
                                     <strong class="d-block">{{$users->keyBy($post->comments[1]->user_id)->first()->name}}</strong>
                                     <span>{{$post->comments[1]->body}}</span>
                                 </div>
-                            </div>
-
+                            </div>    
+                            @endif
                             <small class="text-muted">4 HOURS AGO</small>
                         </div>
 

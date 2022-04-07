@@ -21,6 +21,6 @@ Route::get(
 )->name('home');
 
 Route::post(
-    '/create',
-    [PostController::class,'create']
+    'create',
+    [PostController::class,'store']
 )->name('post.create');
