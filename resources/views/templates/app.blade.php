@@ -38,9 +38,9 @@
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2">
-                                <a href="#" class="link-menu">
+                                <button type="button" class="btn link-menu" data-bs-toggle="modal" data-bs-target="#ModalCreatePost">
                                     <i class="fa-regular fa-square-plus fa-lg"></i>
-                                </a>
+                                </button>
                             </li>
                             <li class="list-inline-item ml-2">
                                 <a href="#" class="link-menu">
@@ -61,6 +61,9 @@
                 </div>
             </div>
         </nav>
+
+        <!-- Create Post Modal -->
+        @include('home.create')
 
         <main class="container">
             @yield('content')
