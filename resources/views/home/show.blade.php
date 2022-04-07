@@ -15,13 +15,58 @@
                                 <img src="{{asset('images/profiles/profile-1.jpg')}}" alt="..."
                                     style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                             </div>
-                            <span class="font-weight-bold margin-element10">samkolder</span>
+                            <span class="font-weight-bold margin-element10">{{$post->user->name}}</span>
                         </div>
                     </div>
 
                     <div class="card-body p-0">
                         <div class="">
-                            <img class="img-fluid" src="{{asset('images/posts/post-1.jpg')}}" />
+                            @if ($post->images->count() == 1)
+                            <img class="img-fluid" src="{{$post->images->first()->url_image}}" />
+                            @else
+                            <div id="carouselPostIndicators" class="carousel slide" data-bs-ride="carousel">
+                                @php
+                                    $i = 1;
+                                @endphp
+                                <div class="carousel-indicators">
+                                    @foreach ($post->images as $image)
+                                    <button type="button" data-bs-target="#carouselPostIndicators" data-bs-slide-to="{{$i-1}}" class="active" 
+                                    @if($i==1)
+                                    aria-current="true"
+                                    @endif     
+                                    aria-label="Slide {{$i}}"></button>
+                                    @php
+                                        $i++;
+                                    @endphp
+                                    @endforeach
+                                </div>
+                                @php
+                                    $i = 1;
+                                @endphp
+                                <div class="carousel-inner">
+                                    @foreach ($post->images as $image)
+                                    <div class="carousel-item 
+                                    @if($i == 1)
+                                    active
+                                    @endif
+                                    ">
+                                        <img class="img-fluid" src="{{$image->url_image}}" />
+                                    </div>
+                                    @php
+                                        $i++;
+                                    @endphp
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselPostIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselPostIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                            @endif
                         </div>
 
                         <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10">
@@ -53,22 +98,32 @@
     
         <div class="col-4">
             <div class="pl-3 pr-3 pb-2 margin-element20">
-                <strong class="d-block" >365.354 likes</strong>
-                <strong class="d-block">samkolder</strong>
-                <p class="d-block mb-1">Lil drone shot I got a while back but never posted.</p>
+                <strong class="d-block" >{{$post->likes->count()}} likes</strong>
+                <strong class="d-block">{{$post->user->name}}</strong>
+                <p class="d-block mb-1">{{$post->body}}</p>
                 <button class="btn p-0">
-                    <span class="text-muted">View all 2,247 comments</span>
+                    <span class="text-muted">View all {{$post->comments->count()}} comments</span>
                 </button>
-                <div>
+                @if($post->comments->count()>0)
                     <div>
-                        <strong class="d-block">a.7.m3ff</strong>
-                        <span>❤️💓💓💓💓💓</span>
-                    </div>
-                    <div>
-                        <strong class="d-block">adri_rez77</strong>
-                        <span>Hi</span>
-                    </div>
-                </div>
+                        @php
+                            $j=1;
+                        @endphp
+                        @foreach ($post->comments as $comment)
+                        <strong class="d-block">{{$users->keyBy($comment->user_id)->first()->name}}</strong>
+                        <span>{{$comment->body}}</span>
+                        @php
+                            $j++;
+                        @endphp
+                        @if ($j>3)
+                            @break
+                        @endif
+                        @endforeach
+                        <div>
+                            
+                        </div>
+                    </div>    
+                    @endif
                 <small class="text-muted">4 HOURS AGO</small>
             </div>
 

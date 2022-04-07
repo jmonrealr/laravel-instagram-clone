@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Image;
+use App\Models\User;
 
 class PostController extends Controller
 {
@@ -51,7 +52,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with(['likes','comments','images','user'])->findOrFail($id);
+        $users = User::all();
         return view('home.show',get_defined_vars());
     }
 
