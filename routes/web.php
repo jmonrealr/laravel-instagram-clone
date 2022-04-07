@@ -24,3 +24,13 @@ Route::post(
     'create',
     [PostController::class,'store']
 )->name('post.create');
+
+Route::get(
+    'show/{id}',
+    [PostController::class,'show']
+)->name('post.show');
+
+Route::post(
+    'delete',
+    [PostController::class,'delete']
+)->name('post.delete');

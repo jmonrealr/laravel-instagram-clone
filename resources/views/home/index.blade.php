@@ -173,7 +173,7 @@
                         <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10">
                             <ul class="list-inline d-flex flex-row align-items-center m-0">
                                 <li class="list-inline-item">
-                                    <button class="btn p-0">
+                                    <button class="btn p-0" id="like" name="like">
                                         <i class="fa-regular fa-heart fa-2x"></i>
                                     </button>
                                 </li>
@@ -195,9 +195,7 @@
                             <strong class="d-block">{{$post->user->name}}</strong>
                             <p class="d-block mb-1">{{$post->body}}</p>
                             @if($post->comments->count()>0)
-                            <button class="btn p-0">
-                                <span class="text-muted">View all {{$post->comments->count()}} comments</span>
-                            </button>
+                            <a href="{{route('post.show',$post->id)}}"><span class="text-muted">View all {{$post->comments->count()}} comments</span></a>
                             <div>
                                 <div>
                                     <strong class="d-block">{{$users->keyBy($post->comments->first()->user_id)->first()->name}}</strong>
@@ -285,7 +283,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Create Post Modal -->
         @include('home.create')
     </div>

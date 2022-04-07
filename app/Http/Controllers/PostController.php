@@ -49,10 +49,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show($id)
     {
-        $post = findOrFail($id)->first();
-        return Response::json($post);
+        $post = Post::findOrFail($id);
+        return view('home.show',get_defined_vars());
     }
 
     /**
