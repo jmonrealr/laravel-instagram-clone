@@ -8,11 +8,11 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <input id="title" class="w-100 border-0 p-3 input-post" placeholder="Add a title...">
-            <input id="body" class="w-100 border-0 p-3 input-post" placeholder="Add a body of the post...">
+          <form id="form-modal" name="form-modal" enctype="multipart/form-data">
+            <input id="title" name="title" class="w-100 border-0 p-3 input-post" placeholder="Add a title...">
+            <input id="body" name="body" class="w-100 border-0 p-3 input-post" placeholder="Add a body of the post...">
             <div class="mb-3">
-                <input class="form-control" type="file" id="image" accept="image/*" onchange="previewFile(this);">
+                <input class="form-control" type="file" id="image" name="image" accept="image/*" onchange="previewFile(this);">
                 <img id="imgshow" style="visibility: hidden" class="img-fluid" src="#" alt="your image" />
             </div>
             <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
@@ -31,7 +31,7 @@
         function previewFile(input) {
             let file = $("input[type=file]").get(0).files[0];
             if(file){
-                var reader = new FileReader();
+                let reader = new FileReader();
                 reader.onload = function(){
                     $("#imgshow").attr("src", reader.result);
                     $("#imgshow").attr("style", 'visible');
@@ -49,21 +49,30 @@
         $('#post-create').click(function(){
             const title = $('#title').val();
             const body = $('#body').val();
-            const img = $('#image').val();
             const user_id = $('#user_id').val();
+            //let formData = new FormData(); 
+            //img = $("input[type=file]").get(0).files[0];
+            //formData.append('img',$('#image')[0].files[0]);
+            var formData = new FormData(document.querySelector('#form-modal'));
+            console.log(formData);
             $.ajax({
                 url:'create',
-                data:{
-                    title,
-                    body,
-                    img,
-                    user_id
-                },
+                data://{
+                    //title,
+                    //body,
+                    //user_id,
+                    formData
+                //}
+                ,
                 type:'post',
-                success: 201,
+                contentType: false,
+                processData: false,
+                success: function(data){
+                    console.log(data);
+                },
                 statusCode: {
-                    404: function(){
-                        console.log('No se pudo encontrar');
+                    404: function(e){
+                        console.log(e);
                     }
                 },
                 error:function(x,xs,xt){
