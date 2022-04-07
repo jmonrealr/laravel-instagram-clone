@@ -9,8 +9,8 @@ class HomeController extends Controller
 {
 
     public function index(){
-        $posts = Post::with(['likes','comments','images'])->get();
-        return view('index',$posts);
+        $posts = Post::with(['likes','comments','images','user'])->get();
+        return view('index',get_defined_vars());
     }
 
 
