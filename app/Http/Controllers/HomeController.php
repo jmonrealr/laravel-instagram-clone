@@ -7,10 +7,11 @@ use App\Models\Post;
 
 class HomeController extends Controller
 {
-    //
 
     public function index(){
-        $posts = Post::all();
-        return view('index');
+        $posts = Post::with(['likes','comments','images'])->get();
+        return view('index',$posts);
     }
+
+
 }
