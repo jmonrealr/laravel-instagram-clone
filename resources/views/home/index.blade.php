@@ -187,17 +187,17 @@
                         </div>
 
                         <div class="pl-3 pr-3 pb-2 margin-element20">
-                            <strong class="d-block" >365.354 likes</strong>
-                            <strong class="d-block">samkolder</strong>
-                            <p class="d-block mb-1">Lil drone shot I got a while back but never posted.</p>
+                            <strong class="d-block" >{{$post->likes->count()}} likes</strong>
+                            <strong class="d-block">{{$post->user->name}}</strong>
+                            <p class="d-block mb-1">{{$post->body}}</p>
                             <button class="btn p-0">
-                                <span class="text-muted">View all 2,247 comments</span>
+                                <span class="text-muted">View all {{$post->comments->count()}} comments</span>
                             </button>
 
                             <div>
                                 <div>
-                                    <strong class="d-block">a.7.m3ff</strong>
-                                    <span>❤️💓💓💓💓💓</span>
+                                    <strong class="d-block">{{$users->keyBy($post->comments->first()->user_id)->first()->name}}</strong>
+                                    <span>{{$post->comments->first()->body}}</span>
                                 </div>
                                 <div>
                                     <strong class="d-block">adri_rez77</strong>
