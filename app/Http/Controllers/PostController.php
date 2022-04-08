@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Image;
 use App\Models\User;
+use App\Models\Like;
 
 class PostController extends Controller
 {
@@ -64,6 +65,18 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
+    {
+        $post = Post::findOrFail($id)->delete();
+        return Response::json($post);
+    }
+
+    /**
+     * Method that likes the post
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request)
     {
         $post = Post::findOrFail($id)->delete();
         return Response::json($post);

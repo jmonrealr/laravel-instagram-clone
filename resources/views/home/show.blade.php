@@ -73,7 +73,7 @@
                             <ul class="list-inline d-flex flex-row align-items-center m-0">
                                 <li class="list-inline-item">
                                     <button class="btn p-0">
-                                        <i class="fa-regular fa-heart fa-2x"></i>
+                                        <i class="fa-regular fa-heart fa-2x" id="heart" for="{{$post->id}}"></i>
                                     </button>
                                 </li>
                                 <li class="list-inline-item ml-2">

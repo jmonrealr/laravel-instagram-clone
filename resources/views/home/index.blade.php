@@ -173,8 +173,25 @@
                         <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10">
                             <ul class="list-inline d-flex flex-row align-items-center m-0">
                                 <li class="list-inline-item">
-                                    <button class="btn p-0" id="like" name="like">
-                                        <i class="fa-regular fa-heart fa-2x"></i>
+                                    <button class="btn p-0 like" for="{{$post->id}}">
+                                        @php
+                                            $flag = false;
+                                        @endphp
+                                        @foreach ($post->likes as $like)
+                                            @if ($like->user_id == $post->user_id)
+                                                @php
+                                                    $flag = true;
+                                                @endphp
+                                                @break
+                                            @endif
+                                        @endforeach
+                                        @if ($flag)
+                                        <i class="fa-solid fa-heart fa-2x" id="heart "></i>
+                                        @else
+                                        <i class="fa-regular fa-heart fa-2x " id="heart"></i>
+                                        @endif
+                                        
+
                                     </button>
                                 </li>
                                 <li class="list-inline-item ml-2">
@@ -191,7 +208,12 @@
                         </div>
 
                         <div class="pl-3 pr-3 pb-2 margin-element20">
-                            <strong class="d-block" >{{$post->likes->count()}} likes</strong>
+                            <strong class="d-block" >{{$post->likes->count()}} 
+                                @if($post->likes->count()==1)
+                                like
+                                @else
+                                likes
+                                @endif</strong>
                             <strong class="d-block">{{$post->user->name}}</strong>
                             <p class="d-block mb-1">{{$post->body}}</p>
                             @if($post->comments->count()>0)
@@ -285,3 +307,36 @@
         </div>
     </div>
 </div>
+
+@section('footer-scripts')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+            }
+        }); 
+        $('.like').click(function(){
+            const post = $(this).attr('for');
+            console.log(like)
+            $.ajax({
+                url:'like',
+                data:{
+                    post,
+                },
+                type:'post',
+                success: function(data){
+                    
+                },
+                statusCode: {
+                    404: function(e){
+                        console.log(e);
+                    }
+                },
+                error:function(x,xs,xt){
+                    //window.open(JSON.stringify(x));
+                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
+    </script>
+@endsection
