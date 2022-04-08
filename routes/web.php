@@ -30,7 +30,19 @@ Route::get(
     [PostController::class,'show']
 )->name('post.show');
 
-Route::post(
+Route::delete(
     'delete',
     [PostController::class,'delete']
 )->name('post.delete');
+
+Route::get('settings/',function(){
+    return view('profile.settings');
+})->name('profile.settings');
+
+Route::get('profile/',function(){
+    return view('profile.index');
+})->name('profile.index');
+
+Route::get('profile/id',function(){
+    return view('profile.show');
+})->name('profile.show');
