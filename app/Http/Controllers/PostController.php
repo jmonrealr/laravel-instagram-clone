@@ -68,8 +68,13 @@ class PostController extends Controller
     public function destroy(Request $request)
     {
         $id = $request->post;
-        $post = Post::findOrFail($id)->delete();
-        $image = Image::where('post_id',$id)->delete();
+        $post = NULL;
+        try {
+            $post = Post::findOrFail($id)->delete();    
+        } catch (Illuminate\Database\Eloquent\ModelNotFoundException $ex) {
+            return response()->json($post,404);
+        }
+        $image = Image::where('post_id',$id)->delete();   
         return response()->json($id, 202);
     }
 
