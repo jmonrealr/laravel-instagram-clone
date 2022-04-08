@@ -61,8 +61,8 @@
                                         </div>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="profile-dropdown" >
-                                        <li><a href="#" class="dropdown-item">Profile</a></li>
-                                        <li><a href="#" class="dropdown-item">Settings</a></li>
+                                        <li><a href="{{route('profile.index')}}" class="dropdown-item">Profile</a></li>
+                                        <li><a href="{{route('profile.settings')}}" class="dropdown-item">Settings</a></li>
                                         <li>
                                             <a href="{{route('logout')}}" class="dropdown-item" 
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
