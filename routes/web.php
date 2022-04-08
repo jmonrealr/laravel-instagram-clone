@@ -48,3 +48,4 @@ Route::get('profile/id',function(){
 })->name('profile.show');
 
 Route::post('like', [PostController::class, 'like']);
+Route::post('comment', [PostController::class, 'comment']);

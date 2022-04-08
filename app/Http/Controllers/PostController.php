@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Image;
 use App\Models\User;
 use App\Models\Like;
+use App\Models\Comment;
 
 class PostController extends Controller
 {
@@ -94,5 +95,26 @@ class PostController extends Controller
         }
 
         return Response::json($like);
+    }
+
+    /**
+     * Method that comments the post
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function comment(Request $request)
+    {
+        $comment = $request->comment;
+        //return $heart;
+        $post_id = $request->post;
+        $post = Post::findOrFail($post_id);
+        $user_id = $request->user;
+        $comment = Comment::create([
+            'body' => $comment,
+            'post_id' => $post_id,
+            'user_id' => $user_id,
+        ]);
+        return response()->json($request, 201);
     }
 }

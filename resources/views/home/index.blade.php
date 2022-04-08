@@ -100,8 +100,8 @@
 
                         <div class="position-relative comment-box">
                             <form>
-                                <input class="w-100 border-0 p-3 input-post" placeholder="Add a comment...">
-                                <button class="btn btn-primary position-absolute btn-ig">Post</button>
+                                <input class="w-100 border-0 p-3 input-post"  placeholder="Add a comment...">
+                                <button class="btn btn-primary position-absolute btn-ig" >Post</button>
                             </form>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                         </div>
 
                         <div class="pl-3 pr-3 pb-2 margin-element20">
-                            <strong class="d-block" >{{$post->likes->count()}} 
+                            <strong class="d-block" id="like-test{{$post->id}}">{{$post->likes->count()}} 
                                 @if($post->likes->count()==1)
                                 like
                                 @else
@@ -233,10 +233,10 @@
                         </div>
 
                         <div class="position-relative comment-box">
-                            <form>
-                                <input class="w-100 border-0 p-3 input-post" placeholder="Add a comment...">
-                                <button class="btn btn-primary position-absolute btn-ig">Post</button>
-                            </form>
+                            
+                                <input class="w-100 border-0 p-3 input-post" id="comment-text{{$post->id}}" placeholder="Add a comment...">
+                                <button class="btn btn-primary position-absolute btn-ig comment" for="{{$post->id}}">Post</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -335,11 +335,40 @@
                         console.log("creado" + e);
                         $('#heart'.concat(post)).removeClass("fa-regular");
                         $('#heart'.concat(post)).addClass("fa-solid");
+                        //$('#like-test'.concat(post)).removeClass("fa-regular");
                     },
                     202: function(e){
                         console.log("borrado" + e);
                         $('#heart'.concat(post)).removeClass("fa-solid");
                         $('#heart'.concat(post)).addClass("fa-regular");
+                    },
+                    404: function(e){
+                        console.log(e);
+                    }
+                },
+                error:function(x,xs,xt){
+                    //window.open(JSON.stringify(x));
+                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
+
+        $('.comment').click(function(){
+            const post = $(this).attr('for');
+            const user = $('#user_id').val()
+            const comment = $('#comment-text'.concat(post)).val();
+            console.log(comment);
+            $.ajax({
+                url:'comment',
+                data: {post,user,comment},
+                type:'post',
+                success: function(data){
+                    
+                },
+                statusCode: {
+                    201: function(e){
+                        console.log("creado" + e);
+                        //$('#like-test'.concat(post)).removeClass("fa-regular");
                     },
                     404: function(e){
                         console.log(e);
