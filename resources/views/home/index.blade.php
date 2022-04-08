@@ -338,6 +338,8 @@
                     },
                     202: function(e){
                         console.log("borrado" + e);
+                        $('#heart'.concat(post)).removeClass("fa-solid");
+                        $('#heart'.concat(post)).addClass("fa-regular");
                     },
                     404: function(e){
                         console.log(e);
