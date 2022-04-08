@@ -51,13 +51,29 @@
                                 </a>
                             </li>
                             <li class="list-inline-item ml-2 align-middle">
-                                <a href="#" class="link-menu">
-                                    <div
-                                        class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
-                                        <img src="{{asset('images/profiles/profile-6.jpg')}}" alt="..."
-                                            style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
-                                    </div>
-                                </a>
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toogle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="background-color: white; border: none;background: none;">
+                                        <div
+                                            class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">                                    
+                                                <img src="{{asset('images/profiles/profile-6.jpg')}}" alt="..."
+                                                    style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                        </div>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="profile-dropdown" >
+                                        <li><a href="#" class="dropdown-item">Profile</a></li>
+                                        <li><a href="#" class="dropdown-item">Settings</a></li>
+                                        <li>
+                                            <a href="{{route('logout')}}" class="dropdown-item" 
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Log Out</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                                                @csrf
+                                            </form>
+                                        </li>
+
+                                    </ul>
+                                </div>
                             </li>
                         </ul>
                     </div>
