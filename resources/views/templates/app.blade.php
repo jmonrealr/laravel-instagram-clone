@@ -71,7 +71,6 @@
                                                 @csrf
                                             </form>
                                         </li>
-
                                     </ul>
                                 </div>
                             </li>
@@ -80,6 +79,8 @@
                 </div>
             </div>
         </nav>
+        <!-- Create Post Modal -->
+        @include('home.create')
         @endauth
         <main class="container">
             @yield('content')
