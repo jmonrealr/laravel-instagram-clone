@@ -321,6 +321,7 @@
             const post = $(this).attr('for');
             const user = $('#user_id').val()
             const heart = $('#heart'.concat(post)).attr('for');
+
             console.log(heart);
             $.ajax({
                 url:'like',
@@ -332,6 +333,8 @@
                 statusCode: {
                     201: function(e){
                         console.log("creado" + e);
+                        $('#heart'.concat(post)).removeClass("fa-regular");
+                        $('#heart'.concat(post)).addClass("fa-solid");
                     },
                     202: function(e){
                         console.log("borrado" + e);
