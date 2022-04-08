@@ -65,10 +65,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        $id = $request->post;
         $post = Post::findOrFail($id)->delete();
-        return Response::json($post);
+        $image = Image::where('post_id',$id)->delete();
+        return response()->json($id, 202);
     }
 
     /**

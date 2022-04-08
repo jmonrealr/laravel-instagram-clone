@@ -30,9 +30,9 @@ Route::get(
     [PostController::class,'show']
 )->name('post.show');
 
-Route::delete(
+Route::post(
     'delete',
-    [PostController::class,'delete']
+    [PostController::class,'destroy']
 )->name('post.delete');
 
 Route::get('settings/',function(){

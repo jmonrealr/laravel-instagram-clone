@@ -119,6 +119,18 @@
                                     style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                             </div>
                             <span class="font-weight-bold margin-element10">{{$post->user->name}}</span>
+                            <div class="dropdown ms-auto">
+                                <button class="btn btn-primary dropdown-toogle mr-3" type="button" 
+                                id="settings-dropdown" data-bs-toggle="dropdown" aria-expanded="false"
+                                style="background: none;border: none; ">
+                                    <i class="fa-solid fa-ellipsis fa-2x" style="color: black"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="settings-dropdown" >
+                                    <li><a href="{{route('post.show',$post->id)}}" class="dropdown-item">View post</a></li>
+                                    <li><a href="#" class="dropdown-item delete" for="{{$post->id}}">Delete post</a></li>
+                                </ul>
+                            </div>
+                            
                         </div>
                     </div>
 
@@ -368,6 +380,32 @@
                 statusCode: {
                     201: function(e){
                         console.log("creado" + e);
+                        //$('#like-test'.concat(post)).removeClass("fa-regular");
+                    },
+                    404: function(e){
+                        console.log(e);
+                    }
+                },
+                error:function(x,xs,xt){
+                    //window.open(JSON.stringify(x));
+                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
+
+        $('.delete').click(function(){
+            const post = $(this).attr('for');
+            const user = $('#user_id').val()
+            $.ajax({
+                url:'delete',
+                data: {post,user},
+                type:'post',
+                success: function(data){
+                    
+                },
+                statusCode: {
+                    202: function(e){
+                        console.log("eliminado " + e);
                         //$('#like-test'.concat(post)).removeClass("fa-regular");
                     },
                     404: function(e){
