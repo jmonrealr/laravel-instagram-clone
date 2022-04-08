@@ -78,7 +78,21 @@ class PostController extends Controller
      */
     public function like(Request $request)
     {
-        $post = Post::findOrFail($id)->delete();
-        return Response::json($post);
+        $heart = $request->heart;
+        //return $heart;
+        $post_id = $request->post;
+        $post = Post::findOrFail($post_id);
+        $user_id = $request->user;
+        if($heart == 1){    
+            $like = Like::create([
+            'post_id' => $post_id, 
+            'user_id' => $user_id,]);
+            return response()->json($request, 201);
+        }else{
+            $like = Like::where('user_id',$user_id)->delete();
+            return response()->json($request, 202);
+        }
+
+        return Response::json($like);
     }
 }

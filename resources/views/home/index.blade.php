@@ -186,9 +186,9 @@
                                             @endif
                                         @endforeach
                                         @if ($flag)
-                                        <i class="fa-solid fa-heart fa-2x" id="heart "></i>
+                                        <i class="fa-solid fa-heart fa-2x" id="heart{{$post->id}}" for="2"></i>
                                         @else
-                                        <i class="fa-regular fa-heart fa-2x " id="heart"></i>
+                                        <i class="fa-regular fa-heart fa-2x " id="heart{{$post->id}}" for="1"></i>
                                         @endif
                                         
 
@@ -308,6 +308,8 @@
     </div>
 </div>
 
+<input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
+
 @section('footer-scripts')
     <script>
         $.ajaxSetup({
@@ -317,17 +319,23 @@
         }); 
         $('.like').click(function(){
             const post = $(this).attr('for');
-            console.log(like)
+            const user = $('#user_id').val()
+            const heart = $('#heart'.concat(post)).attr('for');
+            console.log(heart);
             $.ajax({
                 url:'like',
-                data:{
-                    post,
-                },
+                data: {post,user,heart},
                 type:'post',
                 success: function(data){
                     
                 },
                 statusCode: {
+                    201: function(e){
+                        console.log("creado" + e);
+                    },
+                    202: function(e){
+                        console.log("borrado" + e);
+                    },
                     404: function(e){
                         console.log(e);
                     }

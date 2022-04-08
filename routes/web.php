@@ -46,3 +46,5 @@ Route::get('profile/',function(){
 Route::get('profile/id',function(){
     return view('profile.show');
 })->name('profile.show');
+
+Route::post('like', [PostController::class, 'like']);
