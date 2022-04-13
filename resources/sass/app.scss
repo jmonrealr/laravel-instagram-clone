@@ -1,33 +1,33 @@
 @import "~bootstrap/scss/bootstrap";
-
+@import "~izitoast/dist/css/iziToast.min.css";
 .link-menu {
     color: black;
 }
 
 .topbar-profile-photo {
-    width: 1.5em; 
-    height: 1.5em; 
+    width: 1.5em;
+    height: 1.5em;
     position: relative;
 }
 
 .story-profile-photo {
-    width: 56px; 
-    height: 56px; 
-    position: relative; 
+    width: 56px;
+    height: 56px;
+    position: relative;
     border-width: 2px !important;
 }
 
 .post-profile-photo {
-    width: 46px; 
-    height: 46px; 
-    position: relative; 
+    width: 46px;
+    height: 46px;
+    position: relative;
     border-width: 2px !important;
 }
 
 .sidenav-profile-photo {
-    width: 56px; 
-    height: 56px; 
-    position: relative; 
+    width: 56px;
+    height: 56px;
+    position: relative;
 }
 
 .comment-box {
@@ -65,8 +65,8 @@
 }
 
 .sugest-profile-photo {
-    width: 46px; 
-    height: 46px;  
+    width: 46px;
+    height: 46px;
     position: relative;
 }
 
