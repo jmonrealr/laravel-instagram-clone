@@ -109,6 +109,7 @@
                 @php
                     $j = 1;
                 @endphp
+                @isset($posts)
                 @foreach ($posts as $post)
                 <div class="card">
                     <div class="card-header p-3">
@@ -120,7 +121,7 @@
                             </div>
                             <span class="font-weight-bold margin-element10">{{$post->user->name}}</span>
                             <div class="dropdown ms-auto">
-                                <button class="btn btn-primary dropdown-toogle mr-3" type="button" 
+                                <button class="btn btn-primary dropdown-toogle mr-3" type="button"
                                 id="settings-dropdown" data-bs-toggle="dropdown" aria-expanded="false"
                                 style="background: none;border: none; ">
                                     <i class="fa-solid fa-ellipsis fa-2x" style="color: black"></i>
@@ -130,7 +131,7 @@
                                     <li><a href="#" class="dropdown-item delete" for="{{$post->id}}">Delete post</a></li>
                                 </ul>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -144,14 +145,14 @@
                             @endphp
                             <div class="carousel-indicators">
                                 @foreach ($post->images as $image)
-                                <button type="button" data-bs-target="#carouselPostIndicators{{$j}}" data-bs-slide-to="{{$i-1}}" class="active" 
-                                @if($i==1)
-                                aria-current="true"
-                                @endif     
-                                aria-label="Slide {{$i}}"></button>
-                                @php
-                                    $i++;
-                                @endphp
+                                    <button type="button" data-bs-target="#carouselPostIndicators{{$j}}" data-bs-slide-to="{{$i-1}}" class="active"
+                                    @if($i==1)
+                                        aria-current="true"
+                                    @endif
+                                    aria-label="Slide {{$i}}"></button>
+                                    @php
+                                        $i++;
+                                    @endphp
                                 @endforeach
                             </div>
                             @php
@@ -159,16 +160,16 @@
                             @endphp
                             <div class="carousel-inner">
                                 @foreach ($post->images as $image)
-                                <div class="carousel-item 
+                                <div class="carousel-item
                                 @if($i == 1)
-                                active
+                                    active
                                 @endif
                                 ">
                                     <img class="img-fluid" src="{{$image->url_image}}" />
                                 </div>
-                                @php
-                                    $i++;
-                                @endphp
+                                    @php
+                                        $i++;
+                                    @endphp
                                 @endforeach
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselPostIndicators{{$j}}" data-bs-slide="prev">
@@ -198,11 +199,11 @@
                                             @endif
                                         @endforeach
                                         @if ($flag)
-                                        <i class="fa-solid fa-heart fa-2x" id="heart{{$post->id}}" for="2"></i>
+                                            <i class="fa-solid fa-heart fa-2x" id="heart{{$post->id}}" for="2"></i>
                                         @else
-                                        <i class="fa-regular fa-heart fa-2x " id="heart{{$post->id}}" for="1"></i>
+                                            <i class="fa-regular fa-heart fa-2x " id="heart{{$post->id}}" for="1"></i>
                                         @endif
-                                        
+
 
                                     </button>
                                 </li>
@@ -220,48 +221,50 @@
                         </div>
 
                         <div class="pl-3 pr-3 pb-2 margin-element20">
-                            <strong class="d-block" id="like-test{{$post->id}}">{{$post->likes->count()}} 
+                            <strong class="d-block" id="like-test{{$post->id}}">{{$post->likes->count()}}
                                 @if($post->likes->count()==1)
-                                like
+                                    like
                                 @else
-                                likes
-                                @endif</strong>
+                                    likes
+                                @endif
+                            </strong>
                             <strong class="d-block">{{$post->user->name}}</strong>
                             <p class="d-block mb-1">{{$post->body}}</p>
                             @if($post->comments->count()>0)
-                            <a href="{{route('post.show',$post->id)}}"><span class="text-muted">View all {{$post->comments->count()}} comments</span></a>
-                            <div>
+                                <a href="{{route('post.show',$post->id)}}"><span class="text-muted">View all {{$post->comments->count()}} comments</span></a>
                                 <div>
-                                    <strong class="d-block">{{$users->keyBy($post->comments->first()->user_id)->first()->name}}</strong>
-                                    <span>{{$post->comments->first()->body}}</span>
+                                    <div>
+                                        <strong class="d-block">{{$users->keyBy($post->comments->first()->user_id)->first()->name}}</strong>
+                                        <span>{{$post->comments->first()->body}}</span>
+                                    </div>
+                                    <div>
+                                        <strong class="d-block">{{$users->keyBy($post->comments[1]->user_id)->first()->name}}</strong>
+                                        <span>{{$post->comments[1]->body}}</span>
+                                    </div>
                                 </div>
-                                <div>
-                                    <strong class="d-block">{{$users->keyBy($post->comments[1]->user_id)->first()->name}}</strong>
-                                    <span>{{$post->comments[1]->body}}</span>
-                                </div>
-                            </div>    
                             @endif
                             <small class="text-muted">4 HOURS AGO</small>
                         </div>
 
                         <div class="position-relative comment-box">
-                            
+
                                 <input class="w-100 border-0 p-3 input-post" id="comment-text{{$post->id}}" placeholder="Add a comment...">
                                 <button class="btn btn-primary position-absolute btn-ig comment" for="{{$post->id}}">Post</button>
-                            
+
                         </div>
                     </div>
                 </div>
-                @php
-                    $j++;
-                @endphp
+                    @php
+                        $j++;
+                    @endphp
                 @endforeach
-                
+            @endisset
+
                 <!-- END OF POSTS -->
             </div>
         </div>
-    
-    
+
+
         <div class="col-4">
             <div class="d-flex flex-row align-items-center">
                 <div
@@ -326,9 +329,9 @@
     <script>
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }); 
+        });
         $('.like').click(function(){
             const post = $(this).attr('for');
             const user = $('#user_id').val()
@@ -340,7 +343,7 @@
                 data: {post,user,heart},
                 type:'post',
                 success: function(data){
-                    
+
                 },
                 statusCode: {
                     201: function(e){
@@ -375,7 +378,7 @@
                 data: {post,user,comment},
                 type:'post',
                 success: function(data){
-                    
+
                 },
                 statusCode: {
                     201: function(e){
@@ -401,7 +404,7 @@
                 data: {post,user},
                 type:'post',
                 success: function(data){
-                    
+
                 },
                 statusCode: {
                     202: function(e){

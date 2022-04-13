@@ -19,72 +19,77 @@
         <!-- FONTAWESOME -->
         <script src="https://kit.fontawesome.com/a36cdd0297.js" crossorigin="anonymous"></script>
 
+        @yield('extra-css')
     </head>
     <body>
         @auth
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container justify-content-center">
-                <div class="d-flex flex-row justify-content-between align-items-center col-9">
-                    <a class="navbar-brand" href="{{route('home')}}">
-                        <img src="{{asset('images/ig-logo.png')}}" alt="" loading="lazy">
-                    </a>
-                    <div>
-                        <form class="form-inline my-2 my-lg-0">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        </form>
-                    </div>
-                    <div class="d-flex flex-row">
-                        <ul class="list-inline m-0">
-                            <li class="list-inline-item">
-                                <a href="{{route('home')}}" class="link-menu">
-                                    <i class="fa-solid fa-house fa-lg"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item ml-2">
-                                <button type="button" class="btn link-menu" data-bs-toggle="modal" data-bs-target="#ModalCreatePost">
-                                    <i class="fa-regular fa-square-plus fa-lg"></i>
-                                </button>
-                            </li>
-                            <li class="list-inline-item ml-2">
-                                <a href="#" class="link-menu">
-                                    <i class="fa-regular fa-heart fa-lg"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item ml-2 align-middle">
-                                <div class="dropdown">
-                                    <button class="btn btn-primary dropdown-toogle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false"
-                                    style="background-color: white; border: none;background: none;">
-                                        <div
-                                            class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">                                    
-                                                <img src="{{asset('images/profiles/profile-6.jpg')}}" alt="..."
-                                                    style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
-                                        </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container justify-content-center">
+                    <div class="d-flex flex-row justify-content-between align-items-center col-9">
+                        <a class="navbar-brand" href="{{route('home')}}">
+                            <img src="{{asset('images/ig-logo.png')}}" alt="" loading="lazy">
+                        </a>
+                        <div>
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            </form>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item">
+                                    <a href="{{route('home')}}" class="link-menu">
+                                        <i class="fa-solid fa-house fa-lg"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item ml-2">
+                                    <button type="button" class="btn link-menu" data-bs-toggle="modal" data-bs-target="#ModalCreatePost">
+                                        <i class="fa-regular fa-square-plus fa-lg"></i>
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="profile-dropdown" >
-                                        <li><a href="{{route('profile.index')}}" class="dropdown-item">Profile</a></li>
-                                        <li><a href="{{route('profile.settings')}}" class="dropdown-item">Settings</a></li>
-                                        <li>
-                                            <a href="{{route('logout')}}" class="dropdown-item" 
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Log Out</a>
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
-                                                @csrf
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
+                                </li>
+                                <li class="list-inline-item ml-2">
+                                    <a href="#" class="link-menu">
+                                        <i class="fa-regular fa-heart fa-lg"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item ml-2 align-middle">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toogle" type="button" id="profile-dropdown" data-bs-toggle="dropdown" aria-expanded="false"
+                                        style="background-color: white; border: none;background: none;">
+                                            <div
+                                                class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border topbar-profile-photo">
+                                                    <img src="{{asset('images/profiles/profile-6.jpg')}}" alt="..."
+                                                        style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
+                                            </div>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="profile-dropdown" >
+                                            <li><a href="{{route('profile.index')}}" class="dropdown-item">Profile</a></li>
+                                            <li><a href="{{route('profile.settings')}}" class="dropdown-item">Settings</a></li>
+                                            <li>
+                                                <a href="{{route('logout')}}" class="dropdown-item"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                Log Out</a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-        <!-- Create Post Modal -->
-        @include('home.create')
+            </nav>
+
+            <!-- Create Post Modal -->
+            @include('home.create')
+
         @endauth
+
         <main class="container">
             @yield('content')
         </main>
+
         @yield('footer-scripts')
     </body>
 </html>
