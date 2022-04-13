@@ -40,15 +40,15 @@ class UserSeeder extends Seeder
         Profile::factory()->count(3)->create(
             new Sequence(
                 [
-                    'url_image' => 'Josue',
+                    'url_image' => 'images/Josue.jpg',
                     'user_id' => '1',
                 ],
                 [
-                    'url_image' => 'Juan',
+                    'url_image' => 'images/Juan.jpg',
                     'user_id' => '2',
                 ],
                 [
-                    'url_image' => 'Jordy',
+                    'url_image' => 'images/Jordy.jpg',
                     'user_id' => '3',
                 ],
             )
