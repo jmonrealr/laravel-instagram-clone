@@ -75,6 +75,9 @@
                 statusCode: {
                     404: function(e){
                         console.log(e);
+                    },
+                    500: function(e){
+                        console.log(e);
                     }
                 },
                 error:function(x,xs,xt){

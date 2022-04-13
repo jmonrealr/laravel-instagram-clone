@@ -29,7 +29,7 @@ class PostController extends Controller
             ['id' => $request->post_id],
             ['title' => $request['title'], 
             'body' => $request['body'],
-            'user_id' => $request->user_id]
+            'user_id' => auth()->user()->id]
         );
 
         $file = $request->file('image');
@@ -94,7 +94,8 @@ class PostController extends Controller
         if($heart == 1){    
             $like = Like::create([
             'post_id' => $post_id, 
-            'user_id' => $user_id,]);
+            'user_id' => auth()->id(),
+        ]);
             return response()->json($request, 201);
         }else{
             $like = Like::where('user_id',$user_id)->delete();
@@ -120,7 +121,7 @@ class PostController extends Controller
         $comment = Comment::create([
             'body' => $comment,
             'post_id' => $post_id,
-            'user_id' => $user_id,
+            'user_id' => auth()->user()->id,
         ]);
         return response()->json($request, 201);
     }
