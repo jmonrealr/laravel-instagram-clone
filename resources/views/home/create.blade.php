@@ -71,6 +71,11 @@
                 success: function(data){
                     //console.log(data);
                     $('#ModalCreatePost').modal('toggle');
+                    iziToast.success({
+                        title: 'Post Creado',
+                        message: 'Se ha publicado correctamente',
+                    });
+                    
                 },
                 statusCode: {
                     404: function(e){
