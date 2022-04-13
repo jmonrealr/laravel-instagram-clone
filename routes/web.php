@@ -15,15 +15,14 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get(
-    '/',
-    [HomeController::class,'index']
-)->name('home');
-
-
 
 //Auth routes
 Route::middleware(['auth'])->group( function () {
+    Route::get(
+        '/',
+        [HomeController::class,'index']
+    )->name('home');
+
     Route::post(
         'create',
         [PostController::class,'store']
