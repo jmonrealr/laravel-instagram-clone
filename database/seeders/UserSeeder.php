@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Profile;
 
 class UserSeeder extends Seeder
 {
@@ -32,6 +33,23 @@ class UserSeeder extends Seeder
                     'name' => 'JordyL',
                     'email' => '1930136@gmail.com',
                     'password' => Hash::make('jordy'),
+                ],
+            )
+        );
+
+        Profile::factory()->count(3)->create(
+            new Sequence(
+                [
+                    'url_image' => 'Josue',
+                    'user_id' => '1',
+                ],
+                [
+                    'url_image' => 'Juan',
+                    'user_id' => '2',
+                ],
+                [
+                    'url_image' => 'Jordy',
+                    'user_id' => '3',
                 ],
             )
         );
