@@ -15,7 +15,7 @@
                 <input class="form-control" type="file" id="image" name="image" accept="image/*" onchange="previewFile(this);">
                 <img id="imgshow" style="visibility: hidden" class="img-fluid" src="#" alt="your image" />
             </div>
-            <input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">
+            {{--<input id="user_id" name="user_id" type="hidden" value="{{Auth::user()->id}}">--}}
           </form>
         </div>
         <div class="modal-footer">
