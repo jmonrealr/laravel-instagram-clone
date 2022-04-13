@@ -25,8 +25,8 @@
       </div>
     </div>
   </div>
-  
-@section('footer-scripts')
+
+{{--@section('footer-scripts')--}}
     <script>
         function previewFile(input) {
             let file = $("input[type=file]").get(0).files[0];
@@ -43,14 +43,14 @@
     <script>
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')     
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }); 
+        });
         $('#post-create').click(function(){
             const title = $('#title').val();
             const body = $('#body').val();
             const user_id = $('#user_id').val();
-            //let formData = new FormData(); 
+            //let formData = new FormData();
             //img = $("input[type=file]").get(0).files[0];
             //formData.append('img',$('#image')[0].files[0]);
             var formData = new FormData(document.querySelector('#form-modal'));
@@ -79,9 +79,14 @@
                 },
                 error:function(x,xs,xt){
                     //window.open(JSON.stringify(x));
-                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                    iziToast.error({
+                        title: 'Error',
+                        message: x.responseJSON[0]
+                    })
+
+                    // alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
                 }
             });
         });
     </script>
-@endsection
+{{--@endsection--}}

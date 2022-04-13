@@ -92,4 +92,14 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Like');
     }
 
+    /**
+     * Get the profile wo own the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function profile(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne('App\Models\Profile');
+    }
+
 }
