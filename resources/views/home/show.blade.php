@@ -22,7 +22,7 @@
                     <div class="card-body p-0">
                         <div class="">
                             @if ($post->images->count() == 1)
-                            <img class="img-fluid" src="{{$post->images->first()->url_image}}" />
+                            <img class="img-fluid" src="{{asset($post->images->first()->url_image)}}" />
                             @else
                             <div id="carouselPostIndicators" class="carousel slide" data-bs-ride="carousel">
                                 @php
@@ -50,7 +50,7 @@
                                     active
                                     @endif
                                     ">
-                                        <img class="img-fluid" src="{{$image->url_image}}" />
+                                        <img class="img-fluid" src="{{asset($image->url_image)}}" />
                                     </div>
                                     @php
                                         $i++;
