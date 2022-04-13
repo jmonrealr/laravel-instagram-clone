@@ -120,7 +120,7 @@
                                 <div class="d-flex flex-row align-items-center">
                                     <div
                                         class="rounded-circle overflow-hidden d-flex justify-content-center align-items-center border border-danger post-profile-photo mr-3">
-                                        <img src="{{asset('images/profiles/profile-1.jpg')}}" alt="..."
+                                        <img src="{{asset($users->find($post->user_id)->url_image)}}" alt="..."
                                             style="transform: scale(1.5); width: 100%; position: absolute; left: 0;">
                                     </div>
                                     <span class="font-weight-bold margin-element10">{{$post->user->name}}</span>
