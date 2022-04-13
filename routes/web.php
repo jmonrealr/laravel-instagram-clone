@@ -16,36 +16,42 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get(
-    '/', 
+    '/',
     [HomeController::class,'index']
 )->name('home');
 
-Route::post(
-    'create',
-    [PostController::class,'store']
-)->name('post.create');
 
-Route::get(
-    'show/{id}',
-    [PostController::class,'show']
-)->name('post.show');
 
-Route::post(
-    'delete',
-    [PostController::class,'destroy']
-)->name('post.delete');
+//Auth routes
+Route::middleware(['auth'])->group( function () {
+    Route::post(
+        'create',
+        [PostController::class,'store']
+    )->name('post.create');
 
-Route::get('settings/',function(){
-    return view('profile.settings');
-})->name('profile.settings');
+    Route::get(
+        'show/{id}',
+        [PostController::class,'show']
+    )->name('post.show');
 
-Route::get('profile/',function(){
-    return view('profile.index');
-})->name('profile.index');
+    Route::post(
+        'delete',
+        [PostController::class,'destroy']
+    )->name('post.delete');
 
-Route::get('profile/id',function(){
-    return view('profile.show');
-})->name('profile.show');
+    Route::get('settings/',function(){
+        return view('profile.settings');
+    })->name('profile.settings');
 
-Route::post('like', [PostController::class, 'like']);
-Route::post('comment', [PostController::class, 'comment']);
+    Route::get('profile/',function(){
+        return view('profile.index');
+    })->name('profile.index');
+
+    Route::get('profile/id',function(){
+        return view('profile.show');
+    })->name('profile.show');
+
+    Route::post('like', [PostController::class, 'like']);
+    Route::post('comment', [PostController::class, 'comment']);
+});
+//Default routes
