@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\User;
 use App\Models\Like;
 use App\Models\Comment;
+use App\Models\Profile;
 
 class PostController extends Controller
 {
@@ -55,6 +56,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::with(['likes','comments','images','user'])->findOrFail($id);
+        $profile = Profile::find($post->user_id)->url_image;
         $users = User::all();
         return view('home.show',get_defined_vars());
     }
