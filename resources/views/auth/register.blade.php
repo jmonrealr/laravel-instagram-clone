@@ -18,18 +18,18 @@
                                 Sign up to see photos and videos from your friends.
                             </div>
                         </div>
-                    
-                        <form method="POST" action="{{ route('login') }}">
+
+                        <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <br>
                             <div class="form-group row">
-                                
+
                                 <div class="col-md-12">
-                                    <input id="phone_or_email" type="text"
-                                           class="form-control @error('email') is-invalid @enderror" name="phone_or_email"
-                                           value="{{ old('email') }}" required autocomplete="phone_or_email"
-                                           placeholder="Mobile Number or eamil" autofocus>
+                                    <input id="email" type="text"
+                                           class="form-control @error('email') is-invalid @enderror" name="email"
+                                           value="{{ old('email') }}" required autocomplete="email"
+                                           placeholder="Email" autofocus>
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -39,33 +39,15 @@
                                 </div>
                             </div>
 
-                            <br>
-                            <div class="form-group row">
-                                
-                                <div class="col-md-12">
-                                    <input id="full_name" type="text"
-                                           class="form-control @error('email') is-invalid @enderror" name="full_name"
-                                           value="{{ old('email') }}" required autocomplete="full_name"
-                                           placeholder="Full name" autofocus>
+                            <div class="form-group row" style="margin-top: 15px">
 
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <br>
-                            <div class="form-group row">
-                                
                                 <div class="col-md-12">
-                                    <input id="Username" type="text"
-                                           class="form-control @error('email') is-invalid @enderror" name="Username"
-                                           value="{{ old('email') }}" required autocomplete="Username"
+                                    <input id="name" type="text"
+                                           class="form-control @error('name') is-invalid @enderror" name="name"
+                                           value="{{ old('name') }}" required autocomplete="name"
                                            placeholder="Username" autofocus>
 
-                                    @error('email')
+                                    @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -73,8 +55,24 @@
                                 </div>
                             </div>
 
-                            <br>
-                            <div class="form-group row">
+{{--                            <br>--}}
+{{--                            <div class="form-group row">--}}
+
+{{--                                <div class="col-md-12">--}}
+{{--                                    <input id="Username" type="text"--}}
+{{--                                           class="form-control @error('email') is-invalid @enderror" name="Username"--}}
+{{--                                           value="{{ old('email') }}" required autocomplete="Username"--}}
+{{--                                           placeholder="Username" autofocus>--}}
+
+{{--                                    @error('email')--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+                            <div class="form-group row" style="margin-top: 15px">
 
                                 <div class="col-md-12">
                                     <input id="password" type="password"
@@ -89,26 +87,31 @@
                                 </div>
                             </div>
 
-                            <br>
+                            <div class="form-group row" style="margin-top: 15px">
 
-                            <div class="form-group ">
+                                <div class="col-md-12">
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="password_confirmation" required autocomplete="new-password"
+                                            placeholder="Confirm Password">
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 20px">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary col-12">
-                                        {{ __('Sign up') }}
+                                        {{ __('Register') }}
                                     </button>
-
-                                    
                                 </div>
                             </div>
                         </form>
-                                                           
+
                     </div>
                 </div>
 
                 <br>
                 <div class="card">
                     <div class="card-body">
-                    Tienes una cuenta?<a href="{{route('login')}}" class="col-md-4 col-form-label text-md-right" style="text-decoration: none;"> Log in </a>
+                    Tienes una cuenta? <a href="{{route('login')}}" class="col-md-4 col-form-label text-md-right" style="text-decoration: none;">{{ __('Login') }}</a>
                     </div>
                 </div>
             </div>
