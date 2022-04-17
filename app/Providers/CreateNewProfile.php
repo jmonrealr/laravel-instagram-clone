@@ -2,12 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Symfony\Component\HttpKernel\Profiler\Profile;
+
 
 class CreateNewProfile
 {
