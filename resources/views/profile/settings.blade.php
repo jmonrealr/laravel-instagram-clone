@@ -1,5 +1,8 @@
 @extends('templates.app')
 
 @section('content')
-TODO 
+<div class="container">
+    <div class="row justify-content-center">
+    </div>
+</div>
 @endsection
