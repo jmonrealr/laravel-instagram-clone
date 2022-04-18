@@ -25,24 +25,18 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <div class="row" style="margin-top: 10px;">
-                                            <label for="exampleInputEmail1" class="form-label ">Old password</label>
+                                            <label for="exampleInputEmail1" class="form-label ">Username</label>
                                         </div>
                                         <div class="row" style="margin-top: 10px;">
-                                            <label for="exampleInputEmail1" class="form-label">New password</label>
-                                        </div>
-                                        <div class="row" style="margin-top: 10px;">
-                                            <label for="exampleInputEmail1" class="form-label">New password</label>
+                                            <label for="exampleInputEmail1" class="form-label">Email</label>
                                         </div>
                                     </div>
                                     <div class="col-8">
                                     <div class="row" style="margin-top: 10px;">
-                                            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                         </div>
                                         <div class="row" style="margin-top: 10px;">
-                                            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                        </div>
-                                        <div class="row" style="margin-top: 10px;">
-                                            <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                         </div>
                                     </div>
                                 </div>
@@ -58,4 +52,5 @@
         
     </div>
 </div>
+@endsection
 @endsection
