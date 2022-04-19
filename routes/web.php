@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,13 +43,10 @@ Route::middleware(['auth'])->group( function () {
         return view('profile.settings');
     })->name('profile.settings');
 
-    Route::get('profile/',function(){
-        return view('profile.index');
-    })->name('profile.index');
+    Route::get('profile/',[ProfileController::class,'index'])->name('profile.index');
 
-    Route::get('profile/id',function(){
-        return view('profile.show');
-    })->name('profile.show');
+    Route::get('profile/{id}',[ProfileController::class, 'show'])
+    ->name('profile.show');
 
     Route::post('like', [PostController::class, 'like']);
     Route::post('comment', [PostController::class, 'comment']);
