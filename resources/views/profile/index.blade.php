@@ -21,14 +21,14 @@
                                     @csrf
                                     @method('DELETE')
                                     <input name="user_id" hidden value="{{$user->id}}">
-                                    <button type="submit" class="btn btn-outline-info">Unfollow</button>
+                                    <button type="submit" class="btn btn-primary btn-sm p-0 btn-ig">Unfollow</button>
                                 </form>
                             @endif
                         @empty
                             <form enctype="multipart/form-data" method="post" action="{{ route('followers.store') }}">
                                 @csrf
                                 <input name="user_id" hidden value="{{$user->id}}">
-                                <button type="submit" class="btn btn-outline-info">Follow</button>
+                                <button type="submit" class="btn btn-primary btn-sm p-0 btn-ig">Follow</button>
                             </form>
                         @endforelse
                     @endif
