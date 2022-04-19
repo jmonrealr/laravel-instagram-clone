@@ -89,16 +89,17 @@
                             </ul>
                         </div>
 
-                        
+                        <strong class="d-block m-3" >{{$post->likes->count()}} likes</strong>
                     </div>
+                   
                 </div>
                 <!-- END OF THE POST -->
             </div>
         </div>
     
-        <div class="col-4" style="margin-top: 40px;">
-            <div class="pl-3 pr-3 pb-2 margin-element20">
-                <strong class="d-block" >{{$post->likes->count()}} likes</strong>
+        <div class="col-4 mt-5">
+            <div class="mt-5 mb-4">
+                
                 <strong class="d-block">{{$post->user->name}}</strong>
                 <p class="d-block mb-1">{{$post->body}}</p>
                 <button class="btn p-0">
