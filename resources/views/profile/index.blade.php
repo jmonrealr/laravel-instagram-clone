@@ -5,15 +5,19 @@
     <div class="row justify-content-center">
         <div class="row" style="margin-top: 10px;">
             <div class="col-4 justify-content-center">
-                <img src="{{ asset('images/jordy.png') }}" alt="Logo" class="col-12 justify-content-center " style="position:absolute;">
+                @if(is_null($user->profile->url_image))
+                    <img src="{{ asset('images/profiles/profile-1.jpg') }}" alt="Logo" class="rounded-circle" style="width: 300px;border: 1px solid #e4e3e1">
+                @else
+                    <img src="{{ asset($user->profile->url_image) }}" alt="Logo" class="rounded-circle" style="width: 300px;border: 1px solid #e4e3e1">
+                @endif
             </div>
             <div class="col-8">
                 <div class="row">
-                    <div class="col-4">USERNAME</div>
+                    <div class="col-4">{{ Auth::user()->name }}</div>
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-2"> publicaciones</div>
+                    <div class="col-2">@isset($posts) {{ count($posts) }} @endisset publicaciones</div>
                     <div class="col-2"> seguidores</div>
                     <div class="col-2"> seguidos</div>
                 </div>
@@ -22,7 +26,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row" style="margin-top: 10px;">
             <div class="col-12 justify-content=center" style="text-align:center;">
                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist" style="text-align:center;">
@@ -33,15 +37,11 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="row">
-                            <div class="col-4">
-                                <a href="show/1"><img class="img-fluid" src="{{asset('images/posts/post-1.jpg')}}" style="margin-top: 10px;"/></a>
-                            </div>
-                            <div class="col-4">
-                                <a href="show/1"><img class="img-fluid" src="{{asset('images/posts/post-1.jpg')}}" style="margin-top: 10px;"/></a>
-                            </div>
-                            <div class="col-4">
-                                <a href="show/1"><img class="img-fluid" src="{{asset('images/posts/post-1.jpg')}}" style="margin-top: 10px;"/></a>
-                            </div>
+                            @foreach($user->posts as $post)
+                                <div class="col-4">
+                                    <a href="{{ route('post.show', $post->id) }}"><img class="img-fluid" src="{{asset($post->image->url_image)}}" style="margin-top: 10px;"/></a>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

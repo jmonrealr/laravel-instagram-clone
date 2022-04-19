@@ -10,7 +10,7 @@ use App\Models\Post;
 class ProfileController extends Controller
 {
     function index($name){
-        $user = User::where('name', '=', $name)->with('profile')->first();
+        $user = User::where('name', '=', $name)->with('profile', 'posts.image')->first();
         $data = User::all();
         $posts = Post::where('user_id', '=', $user->id)->get();
         return view('profile.index', get_defined_vars());

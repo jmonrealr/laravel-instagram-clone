@@ -73,7 +73,7 @@
                                         <ul class="dropdown-menu" aria-labelledby="profile-dropdown" >
                                             <li><a href="{{route('profile.index', Auth::user()->name)}}" class="dropdown-item">Profile</a></li>
                                             <li><a href="{{route('profile.settings')}}" class="dropdown-item">Settings</a></li>
-                                            <li><a href="{{route('profile.edit')}}" class="dropdown-item">User Settins</a></li>
+                                            <li><a href="{{route('profile.edit')}}" class="dropdown-item">User Settings</a></li>
                                             <li><a href="{{route('profile.change-password')}}" class="dropdown-item">Change Password</a></li>
                                             <li>
                                                 <a href="{{route('logout')}}" class="dropdown-item"

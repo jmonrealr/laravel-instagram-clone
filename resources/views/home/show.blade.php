@@ -21,8 +21,8 @@
 
                     <div class="card-body p-0">
                         <div class="">
-                            @if ($post->images->count() == 1)
-                            <img class="img-fluid" src="{{asset($post->images->first()->url_image)}}" />
+                            @if ($post->image->url_image)
+                            <img class="img-fluid" src="{{asset($post->image->url_image)}}" />
                             @else
                             <div id="carouselPostIndicators" class="carousel slide" data-bs-ride="carousel">
                                 @php
@@ -30,10 +30,10 @@
                                 @endphp
                                 <div class="carousel-indicators">
                                     @foreach ($post->images as $image)
-                                    <button type="button" data-bs-target="#carouselPostIndicators" data-bs-slide-to="{{$i-1}}" class="active" 
+                                    <button type="button" data-bs-target="#carouselPostIndicators" data-bs-slide-to="{{$i-1}}" class="active"
                                     @if($i==1)
                                     aria-current="true"
-                                    @endif     
+                                    @endif
                                     aria-label="Slide {{$i}}"></button>
                                     @php
                                         $i++;
@@ -45,7 +45,7 @@
                                 @endphp
                                 <div class="carousel-inner">
                                     @foreach ($post->images as $image)
-                                    <div class="carousel-item 
+                                    <div class="carousel-item
                                     @if($i == 1)
                                     active
                                     @endif
@@ -103,21 +103,21 @@
                                 </li>
                             </ul>
                         </div>
-                       
+
                         <strong class="d-block m-3" >{{$post->likes->count()}} likes</strong>
                     </div>
-                   
+
                 </div>
                 <!-- END OF THE POST -->
             </div>
         </div>
-    
+
         <div class="col-4 mt-5">
             <div class="mt-5 mb-4">
-                
+
                 <strong class="d-block">{{$post->user->name}}</strong>
                 <p class="d-block mb-1">{{$post->body}}</p>
-                
+
                 @if($post->comments->count()>0)
                     <div>
                         @php
@@ -134,9 +134,9 @@
                         @endif
                         @endforeach
                         <div>
-                            
+
                         </div>
-                    </div>    
+                    </div>
                     @endif
                 <small class="text-muted">4 HOURS AGO</small>
                 <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">

@@ -22,13 +22,13 @@ class PostController extends Controller
     {
         //return ($request);
         if (!$request->image)
-            return response()->json(["No se encuentra la imagen a subir ",$request], 404); 
+            return response()->json(["No se encuentra la imagen a subir ",$request], 404);
 
         //return ($request);
 
         $post = Post::updateOrCreate(
             ['id' => $request->post_id],
-            ['title' => $request['title'], 
+            ['title' => $request['title'],
             'body' => $request['body'],
             'user_id' => auth()->user()->id]
         );
@@ -55,10 +55,11 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::with(['likes','comments','images','user'])->findOrFail($id);
+        $post = Post::with(['likes','comments','image','user'])->findOrFail($id);
         //dd($post);
         $profile = Profile::find($post->user_id)->url_image;
         $users = User::all();
+        $data = User::all();
         return view('home.show',get_defined_vars());
     }
 
@@ -73,11 +74,11 @@ class PostController extends Controller
         $id = $request->post;
         $post = NULL;
         try {
-            $post = Post::findOrFail($id)->delete();    
+            $post = Post::findOrFail($id)->delete();
         } catch (Illuminate\Database\Eloquent\ModelNotFoundException $ex) {
             return response()->json($post,404);
         }
-        $image = Image::where('post_id',$id)->delete();   
+        $image = Image::where('post_id',$id)->delete();
         return response()->json($id, 202);
     }
 
@@ -94,9 +95,9 @@ class PostController extends Controller
         $post_id = $request->post;
         $post = Post::findOrFail($post_id);
         $user_id = $request->user;
-        if($heart == 1){    
+        if($heart == 1){
             $like = Like::create([
-            'post_id' => $post_id, 
+            'post_id' => $post_id,
             'user_id' => auth()->id(),
         ]);
             return response()->json($request, 201);

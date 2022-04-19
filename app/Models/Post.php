@@ -39,9 +39,9 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function images(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function image()
     {
-        return $this->hasMany('App\Models\Image');
+        return $this->hasOne('App\Models\Image');
     }
 
     /**
