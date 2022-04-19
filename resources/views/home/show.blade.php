@@ -7,7 +7,7 @@
             <!-- START OF POST -->
             <div class="d-flex flex-column mt-4 mb-4">
 
-                <div class="card">
+                <div class="card" style="margin-top: 10px;">
                     <div class="card-header p-3">
                         <div class="d-flex flex-row align-items-center">
                             <div
@@ -69,7 +69,7 @@
                             @endif
                         </div>
 
-                        <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10">
+                        <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10" style="margin-top: 10px;">
                             <ul class="list-inline d-flex flex-row align-items-center m-0">
                                 <li class="list-inline-item">
                                     <button class="btn p-0">
@@ -96,7 +96,7 @@
             </div>
         </div>
     
-        <div class="col-4">
+        <div class="col-4" style="margin-top: 40px;">
             <div class="pl-3 pr-3 pb-2 margin-element20">
                 <strong class="d-block" >{{$post->likes->count()}} likes</strong>
                 <strong class="d-block">{{$post->user->name}}</strong>
