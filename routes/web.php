@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group( function () {
     Route::get('/change-password', [ProfileController::class, 'change_password'])->name('profile.change-password');
 
     Route::get('/search', [ProfileController::class, 'search'])->name('profile.search');
-    Route::get('/profile/settings', [ProfileController::class, 'settings'])->name('profile.settings');
+    Route::get('/settings', [ProfileController::class, 'settings'])->name('profile.settings');
 
     Route::post('like', [PostController::class, 'like']);
     Route::post('comment', [PostController::class, 'comment']);
