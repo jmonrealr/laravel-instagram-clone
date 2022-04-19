@@ -39,6 +39,9 @@ Route::middleware(['auth'])->group( function () {
         [PostController::class,'destroy']
     )->name('post.delete');
 
+    Route::post('/followers/store', [\App\Http\Controllers\FollowersController::class, 'store'])->name('follow.store');
+    Route::delete('/followers/{id}/delete/', [\App\Http\Controllers\FollowersController::class, 'delete'])->name('follow.delete');
+
     Route::get('profile/{user}',[ProfileController::class,'index'])->name('profile.index');
 
     Route::post('/profile/show',[ProfileController::class, 'searchProfile']) ->name('profile.show');

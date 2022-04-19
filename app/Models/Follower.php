@@ -44,13 +44,33 @@ class Follower extends Model
     }
 
     /**
-     * Get the user who follows the user
+     * Get the user_follower who own the Follower
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user_follower(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(User::class, 'id', 'user_follower_id');
+    }
+
+    /**
+     * Get the followers who own the Follower
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user_follower(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function followers(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class, 'id', 'user_follower_id');
+    }
+
+    /**
+     * Get the following wo own the Follower
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function following(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'id', 'user_id');
     }
 
 }
