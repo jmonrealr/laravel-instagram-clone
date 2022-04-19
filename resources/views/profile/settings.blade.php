@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-4" styel="" style="margin-top: 10px;">
+                    <div class="col-4" style="margin-top: 10px;">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><a href="{{route('profile.settings')}}" class="action-btns1" data-toggle="tooltip" data-placement="top" title="Ver" style="text-decoration: none; color:black;">Profile</a></li>
                             <li class="list-group-item"><a href="" class="action-btns1" data-toggle="tooltip" data-placement="top" title="Ver" style="text-decoration: none; color:black;">Username and Email</a></li>
@@ -19,8 +19,8 @@
                         </div>
                     </div>
                     <div class="col-6" style="margin-top: 10px;">
-                        
-                        
+
+
                             <form>
                                 <div class="row">
                                     <div class="col-4">
@@ -53,15 +53,15 @@
                                                                         <img src="{{ asset('images/jordy.png') }}" alt="Foto" class="justify-content-center " style="position:absolute;">
                                                                     </div>
                                                                     <div class="col-12" style="margin-top: 10px;">
-                                                                        <div class="input-group custom-file-button">  
-                                                                             
+                                                                        <div class="input-group custom-file-button">
+
                                                                             <input type="file" class="form-control" id="inputGroupFile">
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <button type="submit" class="btn btn-primary justify-content-center" style="margin-top: 10px;">Submit</button>
                                                             </form>
-                                                        
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,14 +77,14 @@
                                 </div>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
                             </form>
-                            
-                        
-                        
+
+
+
                     </div>
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 @endsection

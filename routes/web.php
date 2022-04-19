@@ -39,14 +39,13 @@ Route::middleware(['auth'])->group( function () {
         [PostController::class,'destroy']
     )->name('post.delete');
 
-    Route::get('settings/',function(){
-        return view('profile.settings');
-    })->name('profile.settings');
+    Route::get('profile/{user}',[ProfileController::class,'index'])->name('profile.index');
 
-    Route::get('profile/',[ProfileController::class,'index'])->name('profile.index');
-
-    Route::get('profile/{id}',[ProfileController::class, 'show'])
-    ->name('profile.show');
+    Route::post('/profile/show',[ProfileController::class, 'searchProfile']) ->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/change-password', [ProfileController::class, 'change_password'])->name('profile.change-password');
+    Route::get('/search', [ProfileController::class, 'search'])->name('profile.search');
+    Route::get('/profile/settings', [ProfileController::class, 'settings'])->name('profile.settings');
 
     Route::post('like', [PostController::class, 'like']);
     Route::post('comment', [PostController::class, 'comment']);

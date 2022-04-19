@@ -19,6 +19,8 @@
         <!-- FONTAWESOME -->
         <script src="https://kit.fontawesome.com/a36cdd0297.js" crossorigin="anonymous"></script>
 
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
         @yield('extra-css')
     </head>
     <body>
@@ -29,9 +31,16 @@
                         <a class="navbar-brand" href="{{route('home')}}">
                             <img src="{{asset('images/ig-logo.png')}}" alt="" loading="lazy">
                         </a>
-                        <div>
-                            <form class="form-inline my-2 my-lg-0">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <div class="d-flex">
+                            <form method="POST" class="form-inline my-2 my-lg-0" action="{{ route('profile.show')}}">
+                                @csrf
+                                <select name="users" class="form-control me-2 select2">
+                                    <option></option>
+                                    @foreach($data as $user)
+                                        <option value="{{$user->name}}">{{$user->name}}</option>
+                                    @endforeach
+                                </select>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                             </form>
                         </div>
                         <div class="d-flex flex-row">
@@ -62,8 +71,10 @@
                                             </div>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="profile-dropdown" >
-                                            <li><a href="{{route('profile.index')}}" class="dropdown-item">Profile</a></li>
+                                            <li><a href="{{route('profile.index', Auth::user()->name)}}" class="dropdown-item">Profile</a></li>
                                             <li><a href="{{route('profile.settings')}}" class="dropdown-item">Settings</a></li>
+                                            <li><a href="{{route('profile.edit')}}" class="dropdown-item">User Settins</a></li>
+                                            <li><a href="{{route('profile.change-password')}}" class="dropdown-item">Change Password</a></li>
                                             <li>
                                                 <a href="{{route('logout')}}" class="dropdown-item"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -90,6 +101,14 @@
             @yield('content')
         </main>
 
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script type="text/javascript" defer>
+            $(document).ready(function() {
+                $('.select2').select2({
+                    placeholder: 'Search a user'
+                });
+            });
+        </script>
         @yield('footer-scripts')
     </body>
 </html>
