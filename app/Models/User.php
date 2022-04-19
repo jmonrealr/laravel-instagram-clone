@@ -49,7 +49,7 @@ class User extends Authenticatable
      */
     public function followers(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany('App\Models\Follower');
+        return $this->hasMany('App\Models\Follower', 'user_id', 'id');
     }
 
     /**
@@ -59,7 +59,7 @@ class User extends Authenticatable
      */
     public function following(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany('App\Models\Following');
+        return $this->hasMany('App\Models\Follower', 'user_follower_id', 'id');
     }
 
     /**

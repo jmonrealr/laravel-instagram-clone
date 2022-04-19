@@ -13,13 +13,31 @@
             </div>
             <div class="col-8">
                 <div class="row">
-                    <div class="col-4">{{ Auth::user()->name }}</div>
+                    <div class="col-4">{{ $user->name }}</div>
+                    @if($user->name != auth()->user()->name)
+                        @forelse($user->followers as $follower)
+                            @if($follower->user_follower->name == auth()->user()->name)
+                                <form enctype="multipart/form-data" method="post" action="{{ route('followers.delete', $follower->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input name="user_id" hidden value="{{$user->id}}">
+                                    <button type="submit" class="btn btn-outline-info">Unfollow</button>
+                                </form>
+                            @endif
+                        @empty
+                            <form enctype="multipart/form-data" method="post" action="{{ route('followers.store') }}">
+                                @csrf
+                                <input name="user_id" hidden value="{{$user->id}}">
+                                <button type="submit" class="btn btn-outline-info">Follow</button>
+                            </form>
+                        @endforelse
+                    @endif
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-2">@isset($posts) {{ count($posts) }} @endisset publicaciones</div>
-                    <div class="col-2"> seguidores</div>
-                    <div class="col-2"> seguidos</div>
+                    <div class="col-2">@isset($user->followers) {{ count($user->followers) }} @endisset seguidores</div>
+                    <div class="col-2">@isset($user->following) {{ count($user->following) }} @endisset seguidos</div>
                 </div>
                 <div class="row" style="margin-top: 10px;">
                     <div class="col-8">Bio</div>

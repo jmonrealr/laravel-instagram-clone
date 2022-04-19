@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -39,8 +40,8 @@ Route::middleware(['auth'])->group( function () {
         [PostController::class,'destroy']
     )->name('post.delete');
 
-    Route::post('/followers/store', [\App\Http\Controllers\FollowersController::class, 'store'])->name('follow.store');
-    Route::delete('/followers/{id}/delete/', [\App\Http\Controllers\FollowersController::class, 'delete'])->name('follow.delete');
+    Route::post('/followers/store', [FollowersController::class, 'store'])->name('followers.store');
+    Route::delete('/followers/{id}/delete/', [FollowersController::class, 'delete'])->name('followers.delete');
 
     Route::get('profile/{user}',[ProfileController::class,'index'])->name('profile.index');
 
