@@ -72,8 +72,23 @@
                         <div class="d-flex flex-row justify-content-between pl-3 pr-3 pt-3 pb-1 margin-element10" style="margin-top: 10px;">
                             <ul class="list-inline d-flex flex-row align-items-center m-0">
                                 <li class="list-inline-item">
-                                    <button class="btn p-0">
-                                        <i class="fa-regular fa-heart fa-2x" id="heart" for="{{$post->id}}"></i>
+                                    <button class="btn p-0" for="{{$post->id}}">
+                                        @php
+                                            $flag = false;
+                                        @endphp
+                                        @foreach ($post->likes as $like)
+                                            @if ($like->user_id == $post->user_id)
+                                                @php
+                                                    $flag = true;
+                                                @endphp
+                                                @break
+                                            @endif
+                                        @endforeach
+                                        @if ($flag)
+                                            <i class="fa-regular fa-heart fa-2x like" id="heart" for="2"></i>
+                                        @else
+                                            <i class="fa-regular fa-heart fa-2x like" id="heart" for="1"></i>
+                                        @endif
                                     </button>
                                 </li>
                                 <li class="list-inline-item ml-2">
@@ -88,7 +103,7 @@
                                 </li>
                             </ul>
                         </div>
-
+                       
                         <strong class="d-block m-3" >{{$post->likes->count()}} likes</strong>
                     </div>
                    
@@ -102,9 +117,7 @@
                 
                 <strong class="d-block">{{$post->user->name}}</strong>
                 <p class="d-block mb-1">{{$post->body}}</p>
-                <button class="btn p-0">
-                    <span class="text-muted">View all {{$post->comments->count()}} comments</span>
-                </button>
+                
                 @if($post->comments->count()>0)
                     <div>
                         @php
@@ -126,15 +139,115 @@
                     </div>    
                     @endif
                 <small class="text-muted">4 HOURS AGO</small>
+                <input type="hidden" name="user_id" id="user_id" value="{{Auth::user()->id}}">
             </div>
 
             <div class="position-relative comment-box">
                 <form>
-                    <input class="w-100 border-0 p-3 input-post" placeholder="Add a comment...">
-                    <button class="btn btn-primary position-absolute btn-ig">Post</button>
+                    <input class="w-100 border-0 p-3 input-post" id="comment-text" placeholder="Add a comment...">
+                    <button class="btn btn-primary position-absolute btn-ig comment" for="{{$post->id}}">Post</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('footer-scripts')
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('.like').click(function(){
+            const post = $(this).attr('for');
+            //const user = $('#user_id').val()
+            const heart = $('#heart').attr('for');
+            const user_id = $('#user_id').val()
+
+            console.log(heart);
+            $.ajax({
+                url:'../like',
+                data: {post,user_id,heart},
+                type:'post',
+                success: function(data){
+
+                },
+                statusCode: {
+                    201: function(e){
+                        console.log("creado" + e);
+                        $('#heart').removeClass("fa-regular");
+                        $('#heart').addClass("fa-solid");
+                        //$('#like-test'.concat(post)).removeClass("fa-regular");
+                    },
+                    202: function(e){
+                        console.log("borrado" + e);
+                        $('#heart').removeClass("fa-solid");
+                        $('#heart').addClass("fa-regular");
+                    },
+                    404: function(e){
+                        console.log(e);
+                    }
+                },
+                error:function(x,xs,xt){
+                    //window.open(JSON.stringify(x));
+                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
+
+        $('.comment').click(function(){
+            const post = $(this).attr('for');
+            const user = $('#user_id').val()
+            const comment = $('#comment-text').val();
+            console.log(comment);
+            $.ajax({
+                url:'../comment',
+                data: {post,user,comment},
+                type:'post',
+                success: function(data){
+
+                },
+                statusCode: {
+                    201: function(e){
+                        console.log("creado" + e);
+                        //$('#like-test'.concat(post)).removeClass("fa-regular");
+                    },
+                    404: function(e){
+                        console.log(e);
+                    }
+                },
+                error:function(x,xs,xt){
+                    //window.open(JSON.stringify(x));
+                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
+
+        $('.delete').click(function(){
+            const post = $(this).attr('for');
+            const user = $('#user_id').val()
+            $.ajax({
+                url:'delete',
+                data: {post,user},
+                type:'post',
+                success: function(data){
+
+                },
+                statusCode: {
+                    202: function(e){
+                        console.log("eliminado " + e);
+                        //$('#like-test'.concat(post)).removeClass("fa-regular");
+                    },
+                    404: function(e){
+                        console.log(e);
+                    }
+                },
+                error:function(x,xs,xt){
+                    //window.open(JSON.stringify(x));
+                    alert('error: ' + JSON.stringify(x) +"\n error string: "+ xs + "\n error throwed: " + xt);
+                }
+            });
+        });
+    </script>
 @endsection

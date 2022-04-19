@@ -56,6 +56,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::with(['likes','comments','images','user'])->findOrFail($id);
+        //dd($post);
         $profile = Profile::find($post->user_id)->url_image;
         $users = User::all();
         return view('home.show',get_defined_vars());
