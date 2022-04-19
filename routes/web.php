@@ -46,12 +46,15 @@ Route::middleware(['auth'])->group( function () {
     Route::get('profile/{user}',[ProfileController::class,'index'])->name('profile.index');
 
     Route::post('/profile/show',[ProfileController::class, 'searchProfile']) ->name('profile.show');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::get('/profile/change-password', [ProfileController::class, 'change_password'])->name('profile.change-password');
+
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/change-password', [ProfileController::class, 'change_password'])->name('profile.change-password');
+
     Route::get('/search', [ProfileController::class, 'search'])->name('profile.search');
     Route::get('/profile/settings', [ProfileController::class, 'settings'])->name('profile.settings');
 
     Route::post('like', [PostController::class, 'like']);
     Route::post('comment', [PostController::class, 'comment']);
+
 });
 //Default routes

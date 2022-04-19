@@ -9,6 +9,12 @@ use App\Models\Post;
 
 class ProfileController extends Controller
 {
+    /**
+     * Retrieve the profile
+     *
+     * @param $name
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     function index($name){
         $user = User::where('name', '=', $name)->with('profile', 'posts.image', 'followers.user_follower', 'following')->first();
         $data = User::all();
@@ -16,9 +22,14 @@ class ProfileController extends Controller
         return view('profile.index', get_defined_vars());
     }
 
+    /**
+     * Show the resource
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     function show($id){
         $profile = Profile::with('user')->findOrFail($id);
-        //dd($profile);
         $posts = Post::where('user_id',$profile->user->id);
         return view('profile.show', get_defined_vars());
     }
@@ -55,7 +66,8 @@ class ProfileController extends Controller
      */
     public function edit()
     {
-        return view('profile.edit');
+        $data = User::all();
+        return view('profile.edit', get_defined_vars());
     }
 
     /**
@@ -66,7 +78,8 @@ class ProfileController extends Controller
      */
     public function change_password()
     {
-        return view('profile.password');
+        $data = User::all();
+        return view('profile.password', get_defined_vars());
     }
 
     /**

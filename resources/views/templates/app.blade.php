@@ -74,7 +74,7 @@
                                             <li><a href="{{route('profile.index', Auth::user()->name)}}" class="dropdown-item">Profile</a></li>
                                             <li><a href="{{route('profile.settings')}}" class="dropdown-item">Settings</a></li>
                                             <li><a href="{{route('profile.edit')}}" class="dropdown-item">User Settings</a></li>
-                                            <li><a href="{{route('profile.change-password')}}" class="dropdown-item">Change Password</a></li>
+                                            <li><a href="{{ route('profile.change-password') }}" class="dropdown-item">Change Password</a></li>
                                             <li>
                                                 <a href="{{route('logout')}}" class="dropdown-item"
                                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
